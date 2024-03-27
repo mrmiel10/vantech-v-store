@@ -132,7 +132,7 @@ export const getImagesLaptopsCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'ordi/'});
-
+console.log(blobs)
     return blobs
   } catch (error) {
     throw error
@@ -211,62 +211,36 @@ export const getProductById = async(productId:string)=>{
 
   }
 } 
-export const getCurrentUser = async()=>{
-    
-  let authentificated = false
-  const { isAuthenticated, getUser } = getKindeServerSession();
+export const getCurrentUser = async()=>{ 
+  const {getUser } = getKindeServerSession();
   const user = await getUser();
-  let userInfo = null;
- // let userData = null;
   try {
-  if(!user){
-    authentificated = false
-   // redirect('/')
+  if(!user){   
     console.log(user)
     return null
   }
-  else authentificated = true
+  else 
   console.log(user)
 
-  if(user || user !== null){
+  if(user || user !== null){ 
    
-   
-      userInfo = await prisma.user.findUnique({
+      const userInfo = await prisma.user.findUnique({
         where: { kindeId: user?.id },
         include:{
           orders:true
         }
      });
      if(!userInfo ){
-      authentificated =false
-      return null
-  //   redirect('/')
- 
-      
+    
+      return null      
      } 
-     return userInfo
-    //  return {
-    //   ...userInfo,
-    //   createdAt: userInfo.createdAt.toISOString(),
-    //   updatedAt: userInfo.updatedAt.toISOString()
-    // }
+     return userInfo    
     } 
-  }catch (error) {
-      console.log(error)
-     authentificated = false    
+  }catch (error) {   
+      
      return null   
-    // redirect('/')
+  
     }
   
   }
- /*  if(userInfo && user) {
-   userData = {
-    id: userInfo?.id,
-    kindeId: user.id,
-    email: userInfo.email,
-    firstName: userInfo.firstName,
-    lastName: userInfo.lastName,
-   picture:userInfo.picture
-  }
-  }*/
-  
+ 
