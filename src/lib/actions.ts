@@ -7,7 +7,7 @@ import { uploadImageType } from "@/app/admin/add-products/AddProductsForm";
 import { product } from "../../components/product";
 import { formatPrice } from "./formatPrice";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
+import { Suspense } from "react";
 type userUpdate = {   
         firstname: string;
         lastname: string;
@@ -132,9 +132,7 @@ export const getImagesLaptopsCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'ordi/'});
-    console.log(blobs)
-  
-    console.log(folders)
+
     return blobs
   } catch (error) {
     throw error
