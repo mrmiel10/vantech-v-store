@@ -1,0 +1,103 @@
+type Image {
+  color String
+  colorCode String
+  image String
+}
+type Address {
+  city String
+  country String
+  line1 String
+  line2 String?
+}
+enum Role{
+  USER
+  ADMIN
+}
+model User {
+  id        Int      @id @default(autoincrement())
+  kindeId   String   @unique
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  picture   String
+  createdAt DateTime @default(now())
+  //updatedAt DateTime @updatedAt
+  orders Order[]
+  //role Role @default(USER)
+  reviews Review[]
+}
+model Review{
+  id Int @id @default(autoincrement())
+  userId Int
+  productId Int
+  rating Int
+  comment String
+  createdDate DateTime @default(now())
+  product Product @relation(fields: [productId], references: [id])
+  user User @relation(fields: [userId],references: [id])
+}
+model Order{
+  id Int @id @default(autoincrement())
+  userId Int 
+  amount Float
+  currency String
+  deliveryStatus String?
+  createdDate DateTime @default(now())
+  paymentIntentId String @unique
+  
+  //address Address?
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+}
+
+
+model Product{
+  id Int @id @default(autoincrement())  
+  name String
+  description String
+  price Float
+  brand String
+  category String
+  inStock Boolean
+  //image Image[]
+  reviews Review[]
+  //categoryId Int 
+  //category Category @relation(fields: [categoryId],references: [id])
+
+}
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  description String
+  //products Product[]
+}
+//id String @id @default(auto()) @map("_id") @db.ObjectId
+//userId String @db.ObjectId
+//roducts CartProductType[]
+ const boardId = Number(params.boardId)
+    if(!boardId) return notFound()
+       /*await fetch(`/api/uploadedProducts?filename=${item.image.name}`,{
+          method:"POST",
+          body:JSON.stringify(item.image as File)
+         }).then((res)=>res.json())
+         .then((data) =>{
+          console.log(data)
+          Router.refresh()
+        //  uploadedImages.push({...item,data.
+        return
+          })      
+                
+          .catch((error)=>{
+          console.log(error)
+         }) 
+        }
+        else return null
+
+     
+      }
+     const productData = {...values,images:uploadedImages}
+   
+  
+    ///  const insertProduct = await addProducts(productData)
+    */
+    
