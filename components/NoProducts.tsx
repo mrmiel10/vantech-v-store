@@ -4,8 +4,8 @@ import Image from 'next/image';
 const NoProducts = () => {
   return (
     <div className='min-h-screen flex flex-col justify-center items-center'>
-        <div className='flex flex-col space-y-2'>
-        <div className='justify-center aspect-square w-40 h-40 relative  flex'>
+        <div className='flex flex-col items-center space-y-2'>
+        <div className=' aspect-square w-40 h-40 relative  flex'>
         <Image
         fill
          src={vStore}

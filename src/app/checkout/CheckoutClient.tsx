@@ -16,7 +16,7 @@ const CheckoutClient = () => {
     if(cartProducts){
         setLoading(false)
         setError(false)
-        fetch('/api/create-payment-intent',{
+         fetch('/api/create-payment-intent',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -27,13 +27,17 @@ const CheckoutClient = () => {
         }).then((res)=>{
             setLoading(false)
             if(res.status === 401){
-                return //se connecter
+                return Router.push('/api/auth/login')
             }
-            return res.json()
+           // console.log(res.json())
+             return res.json()
         }).then((data)=>{
-            setClientSecret(data.paymentIntent.client_secret)
-            handleSetPaymentIntent(data.paymentIntent.id)
+            console.log(data)
+            //setClientSecret(data.paymentIntent.client_secret)
+            //handleSetPaymentIntent(data.paymentIntent.id)
         }).catch((error)=>{
+            console.log(error)
+            console.log("erreur de payment")
             setError(true)
             toast.error("une erreur sest produite")
         })

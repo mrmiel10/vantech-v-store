@@ -20,11 +20,12 @@ import ButtonOpenFilter from "../../components/mobileFiltersDialog/ButtonOpenFil
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import MenuFilter from "../../components/mobileFiltersDialog/MenuFilter";
 import { getCurrentUser } from "@/lib/actions";
+import NoProducts from "../../components/NoProducts";
 //import { products } from "./products";
 export default async function Home() {  
   const user = await getCurrentUser()
  const productsAll = await getProducts({category:null})
- if(!productsAll || productsAll.length === 0 ) return <p>Vous n&apos;etes pas connecté</p>
+ if(!productsAll || productsAll.length === 0 ) return <NoProducts />
 
 
 
