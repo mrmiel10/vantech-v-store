@@ -315,4 +315,3 @@ export const getCurrentUser = async()=>{
   }
  
  }
- export const getProducts = async()

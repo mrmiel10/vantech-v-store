@@ -11,6 +11,7 @@ import { formatPrice } from "@/lib/formatPrice";
 import toast from "react-hot-toast";
 import Heading from "../../../components/Heading";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 interface CheckoutFormProps {
   clientSecret: string;
   handleSetPayementSuccess: (value: boolean) => void;
@@ -73,9 +74,18 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       <div className="py-4 text-center text-slate-700 text-xl font-bold">
         Total: {formattedPrice}
       </div>
-      <Button disabled={!isLoading || !stripe || !elements} onClick={() => {}}>
-        {isLoading ? "En cours" : "Payer"}
+      <div>      
+      </div>
+      <div className="flex justify-center">
+      <Button className="px-8 inlineflex justify-center items-center" disabled={isLoading || !stripe || !elements} onClick={() => {}}>
+      {isLoading && (
+          <Loader2 className="animate-spin text-white" />
+        )}
+        Payer
+        {/* {isLoading ? "En cours" : "Payer"} */}
       </Button>
+      </div>
+     
     </form>
   );
 };

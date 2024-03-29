@@ -7,6 +7,7 @@ import {Elements} from "@stripe/react-stripe-js"
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from './CheckoutForm'
 import { Button } from '@mui/material'
+
 const CheckoutClient = () => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
   const {cartProducts,paymentIntent,handleSetPaymentIntent} = useCart()
@@ -45,14 +46,20 @@ const CheckoutClient = () => {
             console.log("erreur de payment")
             setError(true)
             toast.error("une erreur sest produite")
+            setLoading(false)
         })
     }
+    // else{
+    //   Router.back()
+    // }
   },[cartProducts,paymentIntent])
   const options: StripeElementsOptions = {
     clientSecret,
     appearance:{
       theme:"stripe",
-      labels:"floating"
+      labels:"floating",
+      
+     
     }
   }
   const handleSetPaymentSuccess = useCallback((value:boolean)=>{
@@ -61,7 +68,7 @@ const CheckoutClient = () => {
   },[])
 
     return (
-    <div className='w-full'>
+    <div className='max-w-[500px] shadow-md p-8'>
       {clientSecret && cartProducts && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm clientSecret={clientSecret}
@@ -76,7 +83,7 @@ const CheckoutClient = () => {
             <div className='text-teal-500 text-center'>Payment reussi</div>
             <div className='max-w-[220px] w-full'>
               <Button
-              className='text-blue-700'
+              className='bg-blue-700 text-white rounded-md'
               onClick={()=>Router.push("/orders")}
               >
                 Visualiser vos achats
