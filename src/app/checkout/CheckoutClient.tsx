@@ -7,7 +7,7 @@ import {Elements} from "@stripe/react-stripe-js"
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from './CheckoutForm'
 import { Button } from '@mui/material'
-
+import { redirect } from 'next/navigation'
 const CheckoutClient = () => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
   const {cartProducts,paymentIntent,handleSetPaymentIntent} = useCart()
@@ -19,6 +19,7 @@ const CheckoutClient = () => {
   console.log("paymentIntent",paymentIntent)
   console.log("clientSecret",clientSecret)
   useEffect(()=>{
+    if(cartProducts?.length === 0) redirect('/')
     if(cartProducts){
         setLoading(true)
         setError(false)

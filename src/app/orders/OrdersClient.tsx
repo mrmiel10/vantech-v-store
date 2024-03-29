@@ -47,7 +47,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.price}</div>
+          <div className="font-bold text-slate-800">{params.row.amount}</div>
         );
       },
     },
@@ -58,7 +58,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div>
+          <div className="flex justify-center">
             {params.row.paymentStatus === "pending" ? (
               <Status
                 text="pending"

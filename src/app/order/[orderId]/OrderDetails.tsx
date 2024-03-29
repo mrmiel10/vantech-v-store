@@ -27,7 +27,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
       }),
     }).then((res)=>res.json())
     .then((data)=>{
-        if(data.length > 0) setCountOrdersUSer(countOrdersUser)
+      console.log(data)
+        if(data.length > 0) setCountOrdersUSer(data.length)
     })
 .catch((error) => {
 
@@ -115,7 +116,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
       {order.user.role === "ADMIN" ? (
          <div>
          <h2 className="font-semibold mt-4 mb-2">Informations sur le client</h2>
-         <div className="grid grid-cols-4 text-xs gap-4 pb-2 items-center">
+         <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center place-items-center justify-items-center">
            <div className="col-span-2 justify-self-start">Profil</div>
            <div className=" justify-self-center">Adresse mail</div>
            <div className=" justify-self-center">Rôle</div>

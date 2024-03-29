@@ -10,7 +10,7 @@ import Footer from '../../../components/Footer'
 const page = async() => {
   const user = await getCurrentUser()
   if(!user) redirect('/')
-    const orders = await getOrdersByUserId (user.id)
+    const orders = await getOrdersByUserId(user.id)
     if(!orders || orders.length === 0 ) return <p>Pas de commandes effectuées</p>
 
     return (
