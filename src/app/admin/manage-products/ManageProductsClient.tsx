@@ -78,7 +78,7 @@ renderCell:(params)=>{
         handleToggleImageStock(params.row.id,params.row.inStock)
       }} />
       <ActionBtn icon={MdDelete} onClick={() =>{handleDelete(params.row.id,params.row.images)}} />
-      <ActionBtn icon={MdRemoveRedEye} onClick={() =>{}} />
+      <ActionBtn icon={MdRemoveRedEye} onClick={() =>{Router.push(`/product/${params.row.id}`)}} />
       
       </div>
   }
@@ -93,7 +93,7 @@ renderCell:(params)=>{
       toast.success("le statut du produit a bien été changé")
       Router.refresh()
     }).catch((err)=>{
-      toast.error("une erreur a été trouvée")
+      toast.error("Impossible de mettre à jour le statut de cet article")
       console.log(err)
     })
   },[])
@@ -120,7 +120,7 @@ renderCell:(params)=>{
       Router.refresh()
      
     } catch (error) {
-      toast.error('erreur lors de la suppression du fichier')
+      toast.error('Impossible de supprimer le produit')
       console.log(error)
     }
     

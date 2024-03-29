@@ -1,5 +1,3 @@
-
-import Head from "next/head";
 import Image from "next/image";
 import NavbarProfile from "../../components/NavbarProfile";
 import prisma from "../../db";
@@ -12,7 +10,6 @@ import { SquareSlashIcon } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import AllProducts from "../../components/allProducts";
 import getProducts from "../../actions/getProducts";
 import FilterAllProducts from "../../components/mobileFiltersDialog/FilterAllProducts";
@@ -25,7 +22,7 @@ import NoProducts from "../../components/NoProducts";
 export default async function Home() {  
   const user = await getCurrentUser()
  const productsAll = await getProducts({category:null})
- if(!productsAll || productsAll.length === 0 ) return <NoProducts />
+ if(!productsAll || productsAll.length === 0 ) return <NoProducts text="Désolé, nous ne parvenons pas à accéder à la page" />
 
 
 

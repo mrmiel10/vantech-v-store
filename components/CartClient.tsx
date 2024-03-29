@@ -59,16 +59,19 @@ const CartClient = ({  User
         {!!User ? (
           <Button
            
+          onClick={()=>{Router.push('/checkout')}}
+      
             className="mb-2 w-full flex flex-col justify-center items-center bg-blue-700 hover:bg-blue-900 text-white px-4 py-2 rounded-lg"
           >
-            Payer
+            Commander
           </Button>
         ) : (
           <Button
+          onClick={()=>{Router.push('/api/auth/login')}}
            
             className="mb-2 w-full flex flex-col justify-center items-center bg-blue-700 hover:bg-blue-900 text-white px-4 py-2 rounded-lg"
           >
-            Connecter vous pour payer
+            Connecter vous afin de passer la commande
           </Button>
         )}
 

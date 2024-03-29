@@ -13,7 +13,7 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
             const itemTotal = item.price * item.quantity
             return acc + itemTotal;
         },0)
-        const price:any =Math.floor(totalPrice)
+        const price:any = Math.floor(totalPrice)
         return price
     }
     
@@ -26,10 +26,10 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
         const orderData = {
         user:{connect:{id:currentUser.id}},
         amount:total,
-        currency: 'usd',
+        currency: 'FCFA',
+        status:"pending",
         deliveryStatus: "pending",
-        paymentIntentId:payment_intent_id,
-        
+        paymentIntentId:payment_intent_id,        
         products:items
 
     }
@@ -77,7 +77,7 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
         await prisma.order.create({
             data:orderData,
         })
-        return NextResponse.json({valid:true})
+        return NextResponse.json({paymentIntent})
 
 
     }

@@ -42,16 +42,16 @@ const NavbarProfile = ({
   const toggleParamsUser = () => {
     setToggleParamsUser(!istoggleParamsUser);
   };
-  const settingsUser = "text-white lg:text-gray-200 lg:group-hover/settingsAcc:hover:bg-gray-400 ease-in duration"
+  const settingsUser = "text-white lg:px-4 px-0 py-2 lg:text-blue-700 lg:group-hover/settingsAcc:hover:bg-gray-200  ease-in duration"
   const links = [
     { href: "/", content: "Accueil" },
     { href: "", content: "Nos catégories" },
     { href: "/bestSells", content: "Nos meilleures ventes" },
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
-    { href: "/kv surveillance", content: "kit vidéo surveillance" },
+    { href: "#", content: "kit vidéo surveillance" },
     { href: "/mouses", content: "souris" },
-    { href: "/routeurs", content: "Routeurs" },
+    { href: "#", content: "Routeurs" },
   ];
   const Categories = [
     { href: "/desktops", content: "Desktops" },
@@ -221,13 +221,13 @@ const NavbarProfile = ({
             }  relative py-4 justify-center lg:p-0 w-full lg:flex flex-col lg:flex-row lg:w-[300px]`}
           >
             <div className="lg:items-center justify-center mt-4 lg:mt-0 flex flex-col lg:flex-row ">
-              {User && User.role === "ADMIN" && (
+              {/* {User && User.role === "ADMIN" && (
                  <Button className="text-blue-500 hover:opacity-80"
                  onClick={()=>{Router.push('/admin')}}
                  >Passer en mode Admin
                  </Button>
               ) }
-             
+              */}
               {!User ? (
                 <div className="space-x-2 flex mr-4 flex-row">
                   <Link
@@ -281,10 +281,10 @@ const NavbarProfile = ({
                   <div
                     className={`${
                       !istoggleParamsUser ? "isSlideSettings" : ""
-                    } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2 lg:px-2 lg:w-[300px]   div-account`}
+                    } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2  lg:w-[300px] div-account`}
                   >
-                    <ul className="">
-                      <li className={`${settingsUser}`}>{User?.email}</li>
+                    <ul className="p-0">
+                      <li className={`${settingsUser} font-bold`}>{User?.email}</li>
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                       <Link
                         href="/Profil"
@@ -307,7 +307,7 @@ const NavbarProfile = ({
                            href="/admin"
                            className="cursor-pointer group/settingsAcc"
                          >
-                           <li className={`${settingsUser}`}>Ton dashboard</li>
+                           <li className={`${settingsUser}`}>Ton dashboard ADMIN</li>
                          </Link>
                       )
                       }
@@ -316,7 +316,7 @@ const NavbarProfile = ({
                         href="/api/auth/logout"
                         className="cursor-pointer group/settingsAcc"
                       >
-                        <li className="linksSettings">Se déconnecter</li>
+                        <li className={`${settingsUser}`}>Se déconnecter</li>
                       </Link>
                     </ul>
                   </div>

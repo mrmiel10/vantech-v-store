@@ -43,8 +43,8 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     comment: z
       .string({
         required_error: "votre commentaire est vide",
-      })
-      .trim()
+      }).regex(/\s+/,{message:"commentaire incorrecte"}).trim()
+     
       .max(50, { message: "commentaire trop long" }),
     rating: z.coerce.number(
 ),
@@ -65,13 +65,14 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     });
   }
   function onSubmit(values: z.infer<typeof formValidateComment>) {
+    console.log(values)
    setIsLoading(true)
     if(values.rating === 0){
       setIsLoading(false)
       return toast.error("Vous n'avez pas sélectionner d'étoiles");
     } 
     const ratingData = {...values,userId:user?.id,product:product}
-    axios.post('api/rating',ratingData).then(()=>{
+    axios.post('/api/rating',ratingData).then(()=>{
     toast.success('Votre note a été soumise');
     router.refresh();
       form.reset(); 
@@ -86,14 +87,15 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
  .finally(()=>{
   setIsLoading(false)
  })
- if(!user || !product) return null
- const deliveredOrder = user?.orders.some(order => order.products.find(item => item.id === product.id) && order.deliveryStatus === "delivered")
- const userReview = product?.reviews.find((review:Review)=>{
-     return review.userId === user.id
- })
-if(userReview || !deliveredOrder) return null
 
 }
+if(!user || !product) return null
+const deliveredOrder = user?.orders.some(order => order.products.find(item => item.id === product.id) && order.deliveryStatus === "delivered")
+const userReview = product?.reviews.find((review:Review)=>{
+    return review.userId === user.id
+})
+/*if(userReview || !deliveredOrder) return null*/
+
   const classLabel = `text-gray-500 absolute
   cursor-text
   text-md
@@ -111,7 +113,7 @@ if(userReview || !deliveredOrder) return null
 
   return (
     <div className="flex flex-col gap-2 max-w-[500px]">
-      <Heading title="Noter l'article" />
+      <Heading title="Noter l'article" atr=" text-blue-700" />
        <Rating
         onChange={(event, newValue) => {
           setCustomValue("rating", newValue);

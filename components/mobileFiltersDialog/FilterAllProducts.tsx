@@ -6,6 +6,7 @@ import { FaXmark } from "react-icons/fa6";
 import { useState } from 'react';
 import { MinusIcon } from 'lucide-react';
 import { PlusIcon } from 'lucide-react';
+import ButtonOpenFilter from './ButtonOpenFilter';
 export interface CategoriesProps {
     Filters?:{
         id: string;

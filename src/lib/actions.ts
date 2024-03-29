@@ -207,7 +207,8 @@ export const getProductById = async(productId:string)=>{
     return product
   } catch (error) {
     console.log(error)
-    throw error
+    return null
+    //throw error
 
   }
 } 
@@ -243,4 +244,75 @@ export const getCurrentUser = async()=>{
     }
   
   }
+ export const getOrderById = async(orderId:string)=>{
+  try{
+    const order = await prisma.order.findUnique({
+      where:{
+        id:orderId,
+      },
+      include:{
+        user:true
+      }
+    })
+    if(!order) return null
+    return order
+  }
+  catch(error){
+   // throw error
+   return null
+  }
+ }
+ export const getOrders = async() =>{
+  try {
+    const orders = await prisma.order.findMany({
+        include:{
+            user:true
+        },
+        orderBy:{
+            createdDate:"desc"
+        }
+    })
+    if(!orders) return null
+    return orders
+} catch (error) {
+    return null
+}
+ }
+ export const getOrdersByUserId = async(userId:string) => {
+  try {
+    const orders = await prisma.order.findMany({
+        include:{
+            user:true
+        },
+        orderBy:{
+            createdDate:"desc"
+        },
+        where:{
+          userId:userId
+        }
+    })
+    if(!orders) return null
+    return orders
+} catch (error) {
+    return null
+}
+
+ }
+ export const getUserById = async(userId:string) =>{
+  try {
+    const userById = await prisma.user.findUnique({
+      where:{
+       id:userId
+      },
+      include:{
+        orders:true
+      }
+     })
+     if(!userById) return null
+     return userById
+  } catch (error) {
+    return null
+  }
  
+ }
+ export const getProducts = async()
