@@ -272,10 +272,11 @@ export const getCurrentUser = async()=>{
             createdDate:"desc"
         }
     })
-    if(!orders) return null
+  //  if(!orders) return null
     return orders
 } catch (error) {
-    return null
+   // return null
+   throw error
 }
  }
  export const getOrdersByUserId = async(userId:string) => {
@@ -314,4 +315,17 @@ export const getCurrentUser = async()=>{
     return null
   }
  
+ }
+ export const getUsers = async() =>{
+  try {
+    const users = await prisma.user.findMany({})
+   /// if(!users) return null
+    return users
+  } catch (error:any) {
+    //throw new Error(error)
+   // return null
+   throw  error
+  }
+ 
+
  }

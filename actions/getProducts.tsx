@@ -48,6 +48,6 @@ export default async function getProducts(params:IProductsParams){
     }
     catch(error:any){
         console.log(error)
-        //throw new Error(error)
+        throw new Error(error)
     }
 }

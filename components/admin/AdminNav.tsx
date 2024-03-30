@@ -39,11 +39,12 @@ const AdminNav = ({
       const Categories = [
         { href: "/desktops", content: "Desktops" },
         { href: "/laptops", content: "Laptops" },
-        { href: "/kv surveillance", content: "Kit vidéo surveillance" },
-        { href: "/routeurs", content: "Routeurs" },
         { href: "/mouses", content: "Souris" },
+        { href: "/cctv", content: "Kit vidéo surveillance" },
+         { href: "#", content: "Routeurs" },
+         { href: "#", content: "switchs" },
+           
       ];
-      
       
   const Router = useRouter()
  

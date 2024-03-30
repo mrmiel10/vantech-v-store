@@ -49,16 +49,18 @@ const NavbarProfile = ({
     { href: "#", content: "Nos meilleures ventes" },
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
-    { href: "#", content: "kit vidéo surveillance" },
+    { href: "/cctv", content: "kit vidéo surveillance" },
     { href: "/mouses", content: "Souris" },
     { href: "#", content: "Routeurs" },
   ];
   const Categories = [
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
-    { href: "/kv surveillance", content: "kit vidéo surveillance" },
-     { href: "/routeurs", content: "routeurs" },
-        { href: "/souris", content: "souris" },
+    { href: "/mouses", content: "Souris" },
+    { href: "/cctv", content: "Kit vidéo surveillance" },
+     { href: "#", content: "Routeurs" },
+     { href: "#", content: "switchs" },
+       
   ];
   /*<Menu as="div" className="relative inline-block text-left">
     <div>

@@ -1,3 +1,4 @@
+export const revalidate  = 0
 import Image from "next/image";
 import NavbarProfile from "../../components/NavbarProfile";
 import prisma from "../../db";
@@ -88,7 +89,7 @@ function classNames(...classes: any) {
 
               {/* Product grid */}
               <div className="col-span-3">
-                <div className="mx-auto grid grid-cols-1 place-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
+                <div className="mx-auto grid grid-cols-1 justify-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
                   {ShuffleProducts(productsAll).map((product:any,index:any) =>{
                     return (
                       <ProductCard key={index} data={product} />

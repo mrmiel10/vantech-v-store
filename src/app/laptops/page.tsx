@@ -23,11 +23,11 @@ const Page = async () => {
  
   const Categories = [
     //{ name: "desktops", href: "/desktops" },
-    { name: "laptops", href: "/laptops" },
-    { name: "kit de vidéo surveillance", href: "/kit de vidéo suveillance" },
-    { name: "mouses", href: "/mouses" },
-    { name: "switchs", href: "/switchs" },
-    { name: "routeurs", href: "/routeurs" },
+    { name: "Desktops", href: "/desktops" },
+    { name: "Kit de vidéo surveillance", href: "/cctv" },
+    { name: "Souris", href: "/mouses" },
+    { name: "Switchs", href: "#" },
+    { name: "Routeurs", href: "#" },
   ];
   const sortOptions = [
     { name: "Most Popular", href: "#", current: true },

@@ -86,4 +86,6 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
 
 
     }
+    //Return  a default response if none of the conditions are met
+    return NextResponse.error()
     }
