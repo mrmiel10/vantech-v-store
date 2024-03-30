@@ -38,14 +38,15 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
 },[order.userId,countOrdersUser])
  
   return (
-    <div className="max-w-[1150px] m-auto flex flex-col gap-2">
+    <div className="max-w-[1150px] m-auto flex flex-col gap-2 text-gray-500">
       <div className="mt-8">
-        <Heading title="Détails de la commande" />
+        <Heading title="Détails de la commande" atr=" text-blue-700" />
+        <hr className="bg-blue-700 max-w-[40%] h-1" />
       </div>
-      <div>ID de la commmande: {order.id}</div>
+      <div>ID de la commmande:<span className="text-blue-700">{order.id}</span> </div>
       <div>
-        Prix Total
-        <span className="font-bold">{formatPrice(order.amount)}</span>
+        Prix Total{"  "}
+        <span className="font-bold text-blue-700">{formatPrice(order.amount)}</span>
       </div>
       <div className="flex gap-2 items-center">
         <div>Status du payment:</div>
@@ -101,8 +102,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
       <div>Date: {moment(order.createdDate).fromNow()}</div>
       {/*Liste des produits concernant la commande */}
       <div>
-        <h2 className="font-semibold mt-4 mb-2">Articles commandés</h2>
-        <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
+        <h2 className="font-semibold mt-4 mb-2 text-orange-500">Articles commandés</h2>
+        <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center justify-items-center text-blue-700">
           <div className="col-span-2 justify-self-start">Article</div>
           <div className=" justify-self-center">Prix</div>
           <div className=" justify-self-center">Quantité</div>
@@ -115,8 +116,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
       </div>
       {order.user.role === "ADMIN" ? (
          <div>
-         <h2 className="font-semibold mt-4 mb-2">Informations sur le client</h2>
-         <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center place-items-center justify-items-center">
+         <h2 className="font-semibold mt-4 mb-2 text-orange-500">Informations sur le client</h2>
+         <div className="text-blue-500 grid grid-cols-5 text-xs gap-4 pb-2 items-center justify-items-center">
            <div className="col-span-2 justify-self-start">Profil</div>
            <div className=" justify-self-center">Adresse mail</div>
            <div className=" justify-self-center">Rôle</div>

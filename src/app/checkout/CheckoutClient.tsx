@@ -82,9 +82,9 @@ const CheckoutClient = () => {
         {paymentSuccess && (
           <div className='flex items-center flex-col gap-4'>
             <div className='text-teal-500 text-center'>Payment reussi</div>
-            <div className='max-w-[220px] w-full'>
+            <div className='max-w-[400px] w-full min-h-[200px] '>
               <Button
-              className='bg-blue-700 text-white rounded-md'
+              className='bg-blue-700 text-white rounded-md hover:bg-blue-900'
               onClick={()=>Router.push("/orders")}
               >
                 Visualiser vos achats

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ManageProductsClient from './ManageProductsClient'
+
 import getProducts from '../../../../actions/getProducts'
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from '../../../../db';
@@ -8,7 +8,7 @@ import Heading from '../../../../components/Heading';
 import Footer from '../../../../components/Footer';
 import { redirect, useRouter } from 'next/navigation';
 import { getCurrentUser } from '@/lib/actions';
-import getOrders from '../../../../actions/getOrders';
+import { getOrders } from '@/lib/actions';
 import ManageOrdersClient from './ManageOrdersClient';
 const page = async() => {
   
