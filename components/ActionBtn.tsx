@@ -23,13 +23,15 @@ const ActionBtn: React.FC<ActionBtnProps> = ({
          cursor-pointer
           w-[40px]
            h-[30px]
-            text-slate-700
+           bg-blue-700
+           hover:bg-blue-900
+            text-white
              border
               border-slate-400
             ${disabled && "opacity-50 cursor-not-allowed"}
             `}
     >
-      <Icon size={30} color="white" />
+      <Icon size={30} color="text-orange-500" />
     </Button>
   );
 };

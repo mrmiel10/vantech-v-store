@@ -3,7 +3,7 @@ import { Order, Product, User } from '@prisma/client'
 import { formatPrice } from '@/lib/formatPrice'
 import React, { useCallback } from 'react'
 import {DataGrid, GridColDef} from '@mui/x-data-grid'
-import Heading from '../../../../components/Heading'
+
 import Status from '../../../../components/Status'
 import { MdAccessTimeFilled,MdDeliveryDining, MdDone, MdRemoveRedEye } from "react-icons/md";
 import ActionBtn from '../../../../components/ActionBtn'
@@ -11,6 +11,7 @@ import axios from 'axios';
 import {toast,Toaster} from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import moment from 'moment'
+import Heading from '../../../../components/Heading'
 
 interface ManageOrdersClientProps{
     orders:ExtendedOrder[]
@@ -27,7 +28,7 @@ const ManageOrdersClient:React.FC<ManageOrdersClientProps> = ({orders}) => {
         return {
             id:order.id,
             customer:`${order.user.firstName}${ order.user.lastName}`,
-            amount:formatPrice(order.amount /100),
+            amount:formatPrice(order.amount * 100) ,
             paymentStatus:order.status,
             date:moment(order.createdDate).fromNow(),
             deliveryStatus:order.deliveryStatus,
@@ -41,7 +42,7 @@ const ManageOrdersClient:React.FC<ManageOrdersClientProps> = ({orders}) => {
     {field: 'customer', headerName: 'Nom du Client' ,width:240},   
     {field: 'amount', headerName: 'Total(FCFA)' ,width:130,
     renderCell:(params)=>{
-    return (<div className='font-bold text-slate-800'>{params.row.price}</div>)
+    return (<div className='font-bold text-slate-800'>{params.row.amount}</div>)
   },},
  
   {field: 'paymentStatus', headerName: 'Statut du payment' ,width:130,
@@ -98,13 +99,13 @@ renderCell:(params)=>{
     </div>
   )
 }} ,
-{field: 'date', headerName: 'Date' ,width:130}, 
+{field: 'date', headerName: 'Date' ,width:120}, 
 {
   field:"action",
   headerName:"Actions",
   width:200,
   renderCell:(params) =>{
-    return <div className='flex justify-between gap-4 w-full'>
+    return <div className='flex justify-between items-center gap-4 w-full'>
       <ActionBtn icon={MdDeliveryDining} onClick={() =>{
         handleDispatch(params.row.id)
       }} />
@@ -121,7 +122,7 @@ renderCell:(params)=>{
       id,
     deliveryStatus:'dispatched'
     }).then((res)=>{
-      toast.success("le statut du produit a bien été changé")
+      toast.success("le produit est en état d'expédition")
       Router.refresh()
     }).catch((err)=>{
       toast.error("Impossible de mettre à jour le statut de cet article")
@@ -134,7 +135,7 @@ renderCell:(params)=>{
       id,
     deliveryStatus:'delivered'
     }).then((res)=>{
-      toast.success("le statut du produit a bien été changé")
+      toast.success("le produit est en état de livraison")
       Router.refresh()
     }).catch((err)=>{
       toast.error("Impossible de mettre à jour le statut de cet article")
@@ -143,7 +144,12 @@ renderCell:(params)=>{
   },[])
   
     return (
-    <div style={{height:600,width:"100%"}}>
+      <div>
+        <div className='flex justify-center items-center min-h-[50px]'>
+        <Heading title='Gérer les commandes des clients' center={true} atr=" text-blue-700 mt-4 text-xl" />
+        </div>
+     
+          <div style={{height:600,width:"100%"}}>
       <DataGrid
   rows={rows}
   columns={columns}
@@ -157,6 +163,8 @@ renderCell:(params)=>{
 />
 
     </div>
+      </div>
+  
   )
 }
 

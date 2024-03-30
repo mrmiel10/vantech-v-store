@@ -19,7 +19,7 @@ interface OrdersClientProps {
   orders: ExtendedOrder[];
 }
 type ExtendedOrder = Order & {
- // user: User;
+  // user: User;
 };
 const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   const Router = useRouter();
@@ -30,7 +30,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       return {
         id: order.id,
         // customer:`${order.user.firstName}${ order.user.lastName}`,
-        amount: formatPrice(order.amount / 100),
+        amount: formatPrice(order.amount),
         paymentStatus: order.status,
         date: moment(order.createdDate).fromNow(),
         deliveryStatus: order.deliveryStatus,
@@ -137,18 +137,24 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   ];
 
   return (
-    <div style={{ height: 600, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+    <div>
+      <div className="flex justify-center items-center min-h-[50px]">
+        <Heading title="MES COMMANDES" center={true} atr=" text-blue-700 mt-4" />
+      </div>
+
+      <div style={{ height: 600, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 };

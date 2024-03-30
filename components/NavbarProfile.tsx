@@ -9,7 +9,6 @@ import { Search } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import { ShoppingCart } from "lucide-react";
-
 import vStore from "../public/vStore.png";
 import { ChevronDown } from "lucide-react";
 import { Fragment } from "react";
@@ -47,21 +46,21 @@ const NavbarProfile = ({
   const links = [
     { href: "/", content: "Accueil" },
     { href: "", content: "Nos catégories" },
-    { href: "/bestSells", content: "Nos meilleures ventes" },
+    { href: "#", content: "Nos meilleures ventes" },
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
     { href: "#", content: "kit vidéo surveillance" },
-    { href: "/mouses", content: "souris" },
+    { href: "/mouses", content: "Souris" },
     { href: "#", content: "Routeurs" },
   ];
   const Categories = [
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
     { href: "/kv surveillance", content: "kit vidéo surveillance" },
-    { href: "/switchs", content: "switchs" },
-    { href: "/modem", content: "modems" },
+     { href: "/routeurs", content: "routeurs" },
+        { href: "/souris", content: "souris" },
   ];
-  <Menu as="div" className="relative inline-block text-left">
+  /*<Menu as="div" className="relative inline-block text-left">
     <div>
       <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-00 hover:text-gray-700">
         Sort
@@ -100,7 +99,7 @@ const NavbarProfile = ({
         </div>
       </Menu.Items>
     </Transition>
-  </Menu>;
+  </Menu>;*/
 
   const navLinks = links.map((link, index) => {
     if (link.href === "") {
@@ -169,10 +168,10 @@ const NavbarProfile = ({
     <div className="flex flex-col">
       <nav className="flex flex-col bg-blue-950 py-4">
         <div className="px-4 flex flex-col  justify-between items-center gap-x-2 lg:flex-row">
-          {/* logo,inputSearch,etc. */}
+          {/* logo,inputSearch,etc.  */}
           <div className="flex flex-col lg:flex-row w-full gap-x-4">
             <div className="flex w-full justify-center lg:justify-start lg:w-[150px] flex-initial">
-              {/* <Image src={tailwind} alt="logo tailwind" /> */}
+            
               <Image src={vStore} alt="logo V-Store" width={300} />
             </div>
             <div className="flex flex-row grow justify-center">

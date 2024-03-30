@@ -17,10 +17,26 @@ interface OrderDetailsProps {
     user: User;
   };
 }
+
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
   const [countOrdersUser, setCountOrdersUSer] = useState<number>(0);
+  const [currentUser, setCurrentUser] = useState(null);
+  if(currentUser) console.log(currentUser)
+
+  useEffect(()=>{
+    fetch("/api/getCurrentUser",{
+      method:"POST"
+    }).then((res)=>res.json())
+    .then((data)=>{
+      console.log(data)
+      setCurrentUser(data)
+    }).catch((error)=> {
+      console.log(error)
+    })
+    
+  },[currentUser])
   useEffect(() => {
-    fetch("/api/getUser", {
+    fetch("/api/getUserById", {
       method: "POST",
       body: JSON.stringify({
         userId: order.userId,
@@ -114,7 +130,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
             return <OrderItem key={item.id} item={item} />;
           })}
       </div>
-      {order.user.role === "ADMIN" ? (
+      { currentUser &&  currentUser.role === "ADMIN" ? (
          <div>
          <h2 className="font-semibold mt-4 mb-2 text-orange-500">Informations sur le client</h2>
          <div className="text-blue-500 grid grid-cols-5 text-xs gap-4 pb-2 items-center justify-items-center">

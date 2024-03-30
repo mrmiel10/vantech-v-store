@@ -3,12 +3,16 @@ import prisma from '../../../../db'
 import { CartProductType } from '@prisma/client'
 import { getCurrentUser } from '@/lib/actions'
 import { NextResponse } from 'next/server'
+import { IoMdFastforward } from 'react-icons/io'
+
+
 
 const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
     {
         apiVersion:'2023-10-16'
     })
     const calculateOrderAmount = (items:CartProductType[]) =>{
+        if(items.length === 0) return NextResponse.json({error:"votre carte est vide"},{status:403})
         const totalPrice = items.reduce((acc,item)=>{
             const itemTotal = item.price * item.quantity
             return acc + itemTotal;
@@ -20,9 +24,10 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
     export async function POST(request:Request){
         const currentUser = await getCurrentUser()
         if(!currentUser) return NextResponse.json({error:"Pas autorisé"},{status:401})
+      
         const body = await request.json()    
         const {items,payment_intent_id} = body
-        const total = calculateOrderAmount(items) * 100
+        const total = calculateOrderAmount(items) 
         const orderData = {
         user:{connect:{id:currentUser.id}},
         amount:total,
@@ -68,7 +73,7 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
         //create intent
         const paymentIntent = await stripe.paymentIntents.create({
             amount:total,
-            currency:"usd",
+            currency:"xaf",
             automatic_payment_methods:{enabled:true}
         })
         console.log(paymentIntent)

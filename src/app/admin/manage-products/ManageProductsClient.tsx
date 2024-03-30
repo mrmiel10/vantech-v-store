@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation'
 import { deleteObject, getStorage, ref } from 'firebase/storage'
 import { deleteProduct } from '@/lib/actions'
 import firebaseApp from '@/lib/firebase'
+import { IoIosEye } from "react-icons/io";
 interface ManageProductsClientProps{
     products:Product[]
 }
@@ -72,6 +73,7 @@ renderCell:(params)=>{
   field:"action",
   headerName:"Actions",
   width:200,
+  
   renderCell:(params) =>{
     return <div className='flex justify-between gap-4 w-full'>
       <ActionBtn icon={MdCached} onClick={() =>{
@@ -126,7 +128,8 @@ renderCell:(params)=>{
     
   },[storage])
     return (
-    <div style={{height:600,width:"100%"}}>
+      <div>
+           <div style={{height:600,width:"100%"}}>
       <DataGrid
   rows={rows}
   columns={columns}
@@ -140,6 +143,12 @@ renderCell:(params)=>{
 />
 
     </div>
+
+    <Heading title='Gérer les produits de VANTECH V-STORE' center={true} atr=" text-blue-700 mt-4 text-xl" />
+    
+
+      </div>
+ 
   )
 }
 

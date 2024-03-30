@@ -15,9 +15,10 @@ import MenuFilter from "../../../components/mobileFiltersDialog/MenuFilter";
 import ProductCard from "../../../components/ProductCard";
 import getProducts from "../../../actions/getProducts";
 import { getCurrentUser } from "@/lib/actions";
+import NoProducts from "../../../components/NoProducts";
 const Page = async () => {  
   const productsAll = await getProducts({category:"Laptops"})
-  if(!productsAll || productsAll.length === 0 ) return null
+  if(!productsAll || productsAll.length === 0 ) return <NoProducts text="Impossible d'accéder à la page" />
  const user = await getCurrentUser()
  
   const Categories = [

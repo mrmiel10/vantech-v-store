@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NavbarProfile from '../../../components/NavbarProfile copy'
+import NavbarProfile from '../../../components/NavbarProfile'
 import { getCurrentUser } from '@/lib/actions'
 import { getOrdersByUserId } from '@/lib/actions'
 import { redirect } from 'next/navigation'
@@ -17,10 +17,10 @@ const page = async() => {
         <>
         
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
-      <NavbarProfile path={"/admin/manage-products"} User = {user} />
+      <NavbarProfile path={""} User = {user} />
       <main className="grow min-h-[200px] pt-8 max-w-[1150px] m-auto text-xl">
   
-<Heading title='MES COMMANDES' center={true} atr="text-blue-700 mt-4" />
+
    {/* <hr className="mx-14 border-2 border-orange-500 mb-4"/> */}
  
     <OrdersClient orders = {orders} />

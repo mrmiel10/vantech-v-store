@@ -11,7 +11,7 @@ const Heading:React.FC<HeadingProps> = ({
     atr
 }) => {
   return (
-   <div className={`font-bold text-2xl${center ? "text-center" : "text-start"}${atr}`}>
+   <div className={`font-bold text-2xl ${center ? "text-center" : "text-start"}${atr}`}>
       {title}
 
    </div>

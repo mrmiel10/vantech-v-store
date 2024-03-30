@@ -7,6 +7,8 @@ import Footer from '../../../components/Footer';
 import { redirect } from 'next/navigation';
 import CheckoutClient from './CheckoutClient';
 import { getCurrentUser } from '@/lib/actions';
+
+
 const Page = async () => { 
 const user = await getCurrentUser()
 if(!user) redirect('/')

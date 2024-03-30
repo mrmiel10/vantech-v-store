@@ -22,7 +22,7 @@ import { useCart } from "../hooks/useCart";
 const NavbarProfile = ({
   path,
   User,
-  authentificate,
+ 
 }: {
   path?: string;
   User?: {

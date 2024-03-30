@@ -18,6 +18,7 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import MenuFilter from "../../components/mobileFiltersDialog/MenuFilter";
 import { getCurrentUser } from "@/lib/actions";
 import NoProducts from "../../components/NoProducts";
+import ShuffleProducts from "../../actions/shuffleProducts";
 //import { products } from "./products";
 export default async function Home() {  
   const user = await getCurrentUser()
@@ -51,7 +52,7 @@ function classNames(...classes: any) {
         <NavbarProfile path={"/"} User = {user} />
         <main className="grow">
      <header className="px-8 min-h-28 flex justify-center items-center text-blue-700 text-xl lg:text-2xl">
-      <p className="flex flex-col f400:flex-row text-center text-2xl">Obtenez votre Toolkit à porter dun clic</p>
+      <p className="flex flex-col f400:flex-row text-center text-2xl">Obtenez votre Toolkit à porter d&apos;un clic</p>
     </header> 
      <hr className="mx-14 border-2 border-orange-500 mb-4"/>
     
@@ -87,8 +88,8 @@ function classNames(...classes: any) {
 
               {/* Product grid */}
               <div className="col-span-3">
-                <div className="mx-auto grid grid-cols-1 max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
-                  {productsAll.map((product,index) =>{
+                <div className="mx-auto grid grid-cols-1 place-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
+                  {ShuffleProducts(productsAll).map((product:any,index:any) =>{
                     return (
                       <ProductCard key={index} data={product} />
                     )

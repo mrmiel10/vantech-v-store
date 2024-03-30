@@ -18,6 +18,7 @@ const CheckoutClient = () => {
   const Router = useRouter()
   console.log("paymentIntent",paymentIntent)
   console.log("clientSecret",clientSecret)
+  console.log(loading)
   useEffect(()=>{
     if(cartProducts?.length === 0) redirect('/')
     if(cartProducts){
@@ -36,18 +37,20 @@ const CheckoutClient = () => {
             if(res.status === 401){
                 return Router.push('/api/auth/login')
             }
+            if(res.status === 403) return Router.push('/')
            // console.log(res.json())
              return res.json()
         }).then((data)=>{
             console.log(data)
             setClientSecret(data.paymentIntent.client_secret)
             handleSetPaymentIntent(data.paymentIntent.id)
-        }).catch((error)=>{
+            setLoading(false)
+          }).catch((error)=>{
             console.log(error)
             console.log("erreur de payment")
             setError(true)
             toast.error("une erreur sest produite")
-            setLoading(false)
+           /// setLoading(false)
         })
     }
     // else{
@@ -77,12 +80,19 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className='text-center'>Loading Checkout...</div>}
+      
+      {loading ? (
+        <div className='text-center text-blue-700'>En attente de la validation de la commande....</div>
+      )
+      :
+      (
+        <></>
+      ) }
       {error && <div className='text-center text-rose-500'>Une erreur s&apos;est produite</div>}
         {paymentSuccess && (
-          <div className='flex items-center flex-col gap-4'>
+          <div className='flex items-center flex-col gap-4 max-w-[400px]  min-h-[100px] '>
             <div className='text-teal-500 text-center'>Payment reussi</div>
-            <div className='max-w-[400px] w-full min-h-[200px] '>
+            <div className=''>
               <Button
               className='bg-blue-700 text-white rounded-md hover:bg-blue-900'
               onClick={()=>Router.push("/orders")}
