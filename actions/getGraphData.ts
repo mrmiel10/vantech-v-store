@@ -1,4 +1,4 @@
-import { totalmem } from "os";
+
 import prisma from "../db";
 import moment from "moment";
 export default async function getGraphData() {
@@ -6,7 +6,7 @@ export default async function getGraphData() {
         //Get the start and end dates for the data range (7 days to today)
         const startDate = moment().subtract(6,"days").startOf("day")
         const endDate = moment().endOf("day")
-        //Query the start and end dates for the data range (7 days ago to today)
+        //Query the database to get order data grouped by createdDate
         const result = await prisma.order.groupBy({
             by:['createdDate'],
             where:{
@@ -14,7 +14,7 @@ export default async function getGraphData() {
                     gte:startDate.toISOString(),
                     lte:endDate.toISOString(),
                 },
-                status:"complete",
+                status:"completed",
             },
             _sum:{
                 amount:true,
@@ -53,7 +53,7 @@ export default async function getGraphData() {
         const formattedData = Object.values(aggregratedData).sort((a,b)=>
             moment(a.date).diff(moment(b.date))
         )
-        //Return the following data
+        //Return the formatted data
         return formattedData
     } catch (error:any) {
         throw new Error(error)

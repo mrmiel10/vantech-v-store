@@ -25,9 +25,12 @@ if(!user) redirect("/api/auth/login")
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
       <AdminNav path={"/admin"}  User = {user} />
       <main className="grow min-h-[200px] p-8">
-   <header className="px-8 min-h-28 flex justify-center items-center text-blue-700 text-xl lg:text-2xl">
-    <p className="flex flex-col f400:flex-row text-center text-2xl">Bienvenue cher Admin {User?.firstName}, observez les statisitiques de VANTECH V-STORE</p>
-  </header> 
+        <div className=' space-y-4 flex flex-col justify-center text-2xl text-gray-700 lg:text-4xl'>
+        <p className='text-center text-blue-700'>Bienvenue {user.firstName}{ user.lastName}</p>
+        <p className='text-center'>Vous êtes en mode administrateur</p>
+       
+        </div>
+  
     <Summary products={products} orders={orders} users={users} />
         <div className='mt-4 mx-auto max-w-[1150px]'>
           <BarGraph data = {graphData} />

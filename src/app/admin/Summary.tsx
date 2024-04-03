@@ -1,3 +1,4 @@
+"use client"
 import { Order,Product,User } from '@prisma/client'
 import React, { useEffect, useState } from 'react'
 import Heading from '../../../components/Heading'
@@ -45,33 +46,35 @@ const Summary:React.FC<SummaryProps> = ({orders,products,users}) => {
         setSummaryData((prev) => {
             let tempData = {...prev}
             const totalSale = orders.reduce((acc,item)=> {
-                if(item.status === 'complete') {
+                if(item.status === 'completed') {
                     return acc + item.amount;
                 }
                 else return acc
             },0)
             const paidOrders = orders.filter((order =>{
-                return order.status = "complete"
+                return order.status === "completed"
             }))
+
             const unpaidOrders = orders.filter((order =>{
                 return order.status === "pending"
             }))
            tempData.sale.digit = totalSale
-           tempData.orders.digit = orders.length
+           tempData.Orders.digit = orders.length
            tempData.paidOrders.digit = paidOrders.length
            tempData.unpaidOrders.digit = unpaidOrders.length
            tempData.users.digit = users.length
+           tempData.products.digit = products.length
             return tempData
         })
     },[orders,products,users])
     const summaryKeys = Object.keys(summaryData)
   return (
     <div className='max-w-[1150px] m-auto'>
-        <div className='mb-4 mt-8'>
+        <div className='mb-4 mt-16 text-blue-700 flex justify-center'>
             <Heading title="Statitisques de VANTECH V-STORE" />
 
         </div>
-        <div className='grid grid-cols-2 gap-3 max-h-50vh overflow-y-auto text-blue-900'>
+        <div className='grid grid-cols-2 gap-3 max-h-50vh overflow-y-auto text-orange-500'>
             {
                 summaryKeys && summaryKeys.map((key) =>{
                     return <div key={key} className='rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition'>
@@ -87,7 +90,7 @@ const Summary:React.FC<SummaryProps> = ({orders,products,users}) => {
                                 </>
                             }
                         </div>
-                        <div>{summaryData[key].label}</div>
+                        <div className='text-blue-700'>{summaryData[key].label}</div>
                     </div>
                 })
             }
