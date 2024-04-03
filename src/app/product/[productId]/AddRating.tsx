@@ -43,7 +43,7 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
     comment: z
       .string({
         required_error: "votre commentaire est vide",
-      }).regex(/\s+/,{message:"commentaire incorrecte"}).trim()
+      }).trim().min(1,{message:"commentaire incorrecte"})
      
       .max(50, { message: "commentaire trop long" }),
     rating: z.coerce.number(
