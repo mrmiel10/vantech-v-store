@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import { ShoppingCart } from "lucide-react";
-import vStore from "../../public/vStore.png";
+import vStore from '../../public/vStore.png';
 import { Fragment } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";

@@ -8,10 +8,10 @@ import { MinusIcon } from "lucide-react";
 import { SquareSlashIcon } from "lucide-react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { FaXmark } from "react-icons/fa6";
-import blackShoe from "../public/blackShoe.jpg";
+
 import { useState } from "react";
-import { products } from "./products";
-import getProducts from "../actions/getProducts";
+//import { products } from "./products";
+
 import { useEffect } from "react";
 import ProductCard from "./ProductCard";
 
@@ -202,7 +202,7 @@ const AllProducts = () => {
               </form>
 
               {/* Product grid */}
-              <div className="col-span-3">
+              {/* <div className="col-span-3">
                 <div className="mx-auto grid grid-cols-1 max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
                   {products.map((product,index) =>{
                     return (
@@ -211,7 +211,7 @@ const AllProducts = () => {
                   })}
                  
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </main>
