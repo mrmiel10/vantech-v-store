@@ -103,3 +103,20 @@ model Category {
     ///  const insertProduct = await addProducts(productData)
     */
     
+  { currentUser &&  currentUser.role === "ADMIN" ? (
+         <div>
+         <h2 className="font-semibold mt-4 mb-2 text-orange-500">Informations sur le client</h2>
+         <div className="text-blue-500 grid grid-cols-5 text-xs gap-4 pb-2 items-center justify-items-center">
+           <div className="col-span-2 justify-self-start">Profil</div>
+           <div className=" justify-self-center">Adresse mail</div>
+           <div className=" justify-self-center">Rôle</div>
+           <div className=" justify-self-center">Achats éffectués</div>
+           {/* <div className=" justify-self-center">Total</div> */}
+         </div>
+         {order.user && (
+           <OrderUser user={order.user} countOrdersUser={countOrdersUser} />
+         )}
+       </div>
+      ):(
+        <></>
+      )}
