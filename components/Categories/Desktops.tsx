@@ -158,7 +158,7 @@ const Desktops = () => {
                 </div>
 
                 {/* Filters */}
-                <Filters filters ={filters} Categories ={Categories}  />
+                <Filters Filters ={filters} Categories ={Categories}  />
              
               </Dialog.Panel>
             </Transition.Child>

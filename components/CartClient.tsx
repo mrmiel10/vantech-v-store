@@ -2,17 +2,12 @@
 import React from "react";
 import { useCart } from "../hooks/useCart";
 import { ShoppingCartIcon } from "lucide-react";
-import CartShopping from "./CartShopping";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import nikeShoe from "../public/blackNike.jpg";
-import redShoe from "../public/redShoe.jpg";
-import logoTailwind from "../public/tailwind.png";
 import { ArrowLeft } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Plus } from "lucide-react";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/lib/formatPrice";
 import { User,Order } from "@prisma/client";

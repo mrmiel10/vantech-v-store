@@ -9,10 +9,7 @@ import getProducts from '../../../actions/getProducts';
 import BarGraph from './BarGraph';
 import getGraphData from '../../../actions/getGraphData';
 
-const Page = async({path,User}:{ path?: string;
-  User:(User & {
-   orders: Order[];
- }) | null|undefined;}) => {
+const Page = async() => {
   const products = await getProducts({category:null})
   const orders = await getOrders()
   const users = await getUsers()
