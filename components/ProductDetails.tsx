@@ -119,7 +119,7 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
             <div><Button
            
 
-onClick={()=>Router.push("/Cart") }
+onClick={()=>Router.push("/cart") }
 className='border bg-transparent border-orange-500 max-w-[300px] text-orange-500 hover:bg-transparent'>Voir le panier</Button></div>
 
 

@@ -1,11 +1,6 @@
 import React from "react";
-import Image from "next/image";
-
 import NavbarProfile from "../../../components/NavbarProfile";
 import Footer from "../../../components/Footer";
-import prisma from "../../../db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
 import Header from "../../../components/Header";
 import GetMouses from "../../../components/GetMouses";
 import FilterAllProducts from "../../../components/mobileFiltersDialog/FilterAllProducts";
@@ -14,9 +9,10 @@ import ProductCard from "../../../components/ProductCard";
 import getProducts from "../../../actions/getProducts";
 import { getCurrentUser } from "@/lib/actions";
 import NoProducts from "../../../components/NoProducts";
+import ShuffleProducts from "../../../actions/shuffleProducts";
 
 const Page = async () => {
-  const productsAll = await getProducts({ category: "Souris" });
+  const productsAll = await getProducts({ category: "Videos surveillance" });
   if (!productsAll || productsAll.length === 0)
     return <NoProducts text="Impossible d'accéder à cette page" />;
   const user = await getCurrentUser();
@@ -24,7 +20,7 @@ const Page = async () => {
   const Categories = [
     { name: "Laptops", href: "/laptops" },
     { name: "Desktops", href: "/desktops" },
-    { name: "Kit de vidéo surveillance", href: "/cctv" },
+    { name: "Souris", href: "/souris" },
     { name: "Switchs", href: "/switchs" },
     { name: "Routeurs", href: "/routeurs" },
   ];
@@ -59,7 +55,7 @@ const Page = async () => {
 
   return (
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
-      <NavbarProfile path="/mouses" User={user} />
+      <NavbarProfile path="/cctv" User={user} />
       <main className="grow">
         <Header />
         <GetMouses />
@@ -69,7 +65,7 @@ const Page = async () => {
             {/* Mobile filter dialog */}
             <FilterAllProducts Categories={Categories} Filters={Filters} />
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <MenuFilter sortOptions={sortOptions} name="Souris" />
+              <MenuFilter sortOptions={sortOptions} name="Vidéos surveillance" />
 
               <section
                 aria-labelledby="products-heading"
@@ -98,7 +94,7 @@ const Page = async () => {
                   {/* Product grid */}
                   <div className="col-span-3">
                     <div className="mx-auto grid grid-cols-1 max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
-                      {productsAll.map((product, index) => {
+                      {ShuffleProducts(productsAll).map((product:any,index:any) => {
                         return <ProductCard key={index} data={product} />;
                       })}
                     </div>

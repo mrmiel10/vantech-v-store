@@ -3,44 +3,51 @@ import prisma from '../../../../db'
 import { CartProductType } from '@prisma/client'
 import { getCurrentUser } from '@/lib/actions'
 import { NextResponse } from 'next/server'
+import { IoMdFastforward } from 'react-icons/io'
+
+
 
 const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
     {
         apiVersion:'2023-10-16'
     })
     const calculateOrderAmount = (items:CartProductType[]) =>{
+        if(items.length === 0) return NextResponse.json({error:"votre carte est vide"},{status:403})
         const totalPrice = items.reduce((acc,item)=>{
             const itemTotal = item.price * item.quantity
-            return acc * itemTotal;
+            return acc + itemTotal;
         },0)
-        return totalPrice
+        const price:any = Math.floor(totalPrice)
+        return price
     }
     
     export async function POST(request:Request){
         const currentUser = await getCurrentUser()
         if(!currentUser) return NextResponse.json({error:"Pas autorisé"},{status:401})
+      
         const body = await request.json()    
         const {items,payment_intent_id} = body
-        const total = calculateOrderAmount(items) * 100
+        const total = calculateOrderAmount(items) 
         const orderData = {
         user:{connect:{id:currentUser.id}},
         amount:total,
         currency: 'FCFA',
+        status:"pending",
         deliveryStatus: "pending",
-        paymentIntentId:payment_intent_id,
-        tId:payment_intent_id,
+        paymentIntentId:payment_intent_id,        
         products:items
 
     }
+    console.log(orderData)
     if(payment_intent_id){
         
         const current_intent = await stripe.paymentIntents.retrieve(payment_intent_id)
         if(current_intent){
-            const update_intent = await stripe.paymentIntents.update(
+            const updated_intent = await stripe.paymentIntents.update(
                 payment_intent_id,
                 {amount:total}
             )
-        }
+      
         //mettre à jour la commande
         const [existing_order,update_order] = await Promise.all([
             prisma.order.findFirst({
@@ -59,15 +66,18 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
         
        // if(!current_intent) return NextResponse.json({error:"Invalid payment intent"},{status:400})
        
-
+       return NextResponse.json({paymentIntent:updated_intent})
+    }
     }
     else{
         //create intent
         const paymentIntent = await stripe.paymentIntents.create({
             amount:total,
-            currency:"FCFA",
+            currency:"xaf",
             automatic_payment_methods:{enabled:true}
         })
+        console.log(paymentIntent)
+        //creer la commande
         orderData.paymentIntentId = paymentIntent.id
         await prisma.order.create({
             data:orderData,
@@ -76,4 +86,6 @@ const stripe =new Stripe(process.env.STRIPE_SECRET_KEY as string,
 
 
     }
+    //Return  a default response if none of the conditions are met
+    return NextResponse.error()
     }

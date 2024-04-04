@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation'
 import { deleteObject, getStorage, ref } from 'firebase/storage'
 import { deleteProduct } from '@/lib/actions'
 import firebaseApp from '@/lib/firebase'
+import { IoIosEye } from "react-icons/io";
 interface ManageProductsClientProps{
     products:Product[]
 }
@@ -72,13 +73,14 @@ renderCell:(params)=>{
   field:"action",
   headerName:"Actions",
   width:200,
+  
   renderCell:(params) =>{
     return <div className='flex justify-between gap-4 w-full'>
       <ActionBtn icon={MdCached} onClick={() =>{
         handleToggleImageStock(params.row.id,params.row.inStock)
       }} />
       <ActionBtn icon={MdDelete} onClick={() =>{handleDelete(params.row.id,params.row.images)}} />
-      <ActionBtn icon={MdRemoveRedEye} onClick={() =>{}} />
+      <ActionBtn icon={MdRemoveRedEye} onClick={() =>{Router.push(`/product/${params.row.id}`)}} />
       
       </div>
   }
@@ -93,7 +95,7 @@ renderCell:(params)=>{
       toast.success("le statut du produit a bien été changé")
       Router.refresh()
     }).catch((err)=>{
-      toast.error("une erreur a été trouvée")
+      toast.error("Impossible de mettre à jour le statut de cet article")
       console.log(err)
     })
   },[])
@@ -120,13 +122,14 @@ renderCell:(params)=>{
       Router.refresh()
      
     } catch (error) {
-      toast.error('erreur lors de la suppression du fichier')
+      toast.error('Impossible de supprimer le produit')
       console.log(error)
     }
     
   },[storage])
     return (
-    <div style={{height:600,width:"100%"}}>
+      <div>
+           <div style={{height:600,width:"100%"}}>
       <DataGrid
   rows={rows}
   columns={columns}
@@ -140,6 +143,12 @@ renderCell:(params)=>{
 />
 
     </div>
+
+    <Heading title='Gérer les produits de VANTECH V-STORE' center={true} atr=" text-blue-700 mt-4 text-xl" />
+    
+
+      </div>
+ 
   )
 }
 

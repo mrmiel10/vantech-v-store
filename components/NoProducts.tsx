@@ -1,11 +1,11 @@
 import React from 'react'
 import vStore from '../public/vStore.png';
 import Image from 'next/image';
-const NoProducts = () => {
+const NoProducts = ({text}:{text:string}) => {
   return (
     <div className='min-h-screen flex flex-col justify-center items-center'>
-        <div className='flex flex-col space-y-2'>
-        <div className='justify-center aspect-square w-40 h-40 relative  flex'>
+        <div className='flex flex-col items-center space-y-2 max-w-[300px]'>
+        <div className=' aspect-square w-40 h-40 relative  flex'>
         <Image
         fill
          src={vStore}
@@ -15,7 +15,7 @@ const NoProducts = () => {
           />
         </div>
       
-        <p className='text-blue-500 text-xl italic'>Sorry, they are no available products or can&apos;t get products</p>
+        <p className='text-blue-500 text-xl italic'>Désolé, nous ne parvenons pas à accéder à la page</p>
         </div>
         
        

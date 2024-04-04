@@ -1,8 +1,6 @@
 import React from 'react'
 import NavbarProfile from '../../../components/NavbarProfile'
 import ProfileForm from '../../../components/ProfileForm'
-import prisma from '../../../db'
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import Footer from '../../../components/Footer';
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@/lib/actions';

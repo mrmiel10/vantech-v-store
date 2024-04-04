@@ -1,23 +1,22 @@
 import React from 'react'
 import Footer from '../../../../components/Footer'
 import NavbarProfile from '../../../../components/NavbarProfile'
-import prisma from '../../../../db';
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import ProductDetails from '../../../../components/ProductDetails';
-import { product } from '../../../../components/product';
 import ListRating from './ListRating';
-import { products } from '../../../../components/products';
 import { getProductById } from '@/lib/actions';
 import AddRating from './AddRating';
 import { getCurrentUser } from '@/lib/actions';
-import { notFound } from 'next/navigation';
+import NoProducts from '../../../../components/NoProducts';
+
 interface IParams {
     productId:string
 }
 const Product = async ({params} : {params:IParams}) => {
 const product =await getProductById(params.productId)
 
-if(!product) return null
+
+if(!product) return <NoProducts text="Désolé nous ne parvenons pas à accéder à l'article" />
  const user = await getCurrentUser()
     console.log(params)
    

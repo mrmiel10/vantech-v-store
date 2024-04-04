@@ -1,25 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import tailwind from "../public/tailwind.png";
-import Me from "../public/Me.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import { ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import vStore from "../../public/vStore.png";
-import { ChevronDown } from "lucide-react";
 import { Fragment } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../../hooks/useCart";
 import { Order,User } from "@prisma/client";
+import { ChevronDown } from "lucide-react";
 const AdminNav = ({
   path,
   User,
@@ -30,15 +24,28 @@ const AdminNav = ({
     orders: Order[];
   }) | null|undefined;
  
-}) => {  
+}) => { 
+  const {cartTotalQty} = useCart() 
  
     const links = [
+        { href: "/", content: "Accueil" },
         { href: "/admin", content: "Statistiques" },
         { href: "/admin/add-products", content: "Ajouter les articles" },
         { href: "/admin/manage-products", content: "Gérer les articles" },
         { href: "/admin/manage-orders", content: "Gérer les commandes" },
+        { href: "", content: "Tous les catégories"},
        
       ];
+      const Categories = [
+        { href: "/desktops", content: "Desktops" },
+        { href: "/laptops", content: "Laptops" },
+        { href: "/mouses", content: "Souris" },
+        { href: "/cctv", content: "Kit vidéo surveillance" },
+         { href: "#", content: "Routeurs" },
+         { href: "#", content: "switchs" },
+           
+      ];
+      
   const Router = useRouter()
  
  
@@ -51,8 +58,7 @@ const AdminNav = ({
   const toggleParamsUser = () => {
     setToggleParamsUser(!istoggleParamsUser);
   };
-  const settingsUser = "text-white lg:text-gray-200 lg:group-hover/settingsAcc:hover:bg-gray-400 ease-in duration"
-   
+  const settingsUser = "text-white lg:px-4 px-0 py-2 lg:text-blue-700 lg:group-hover/settingsAcc:hover:bg-gray-200  ease-in duration"
 
   return (
     <div className="flex flex-col">
@@ -111,12 +117,7 @@ const AdminNav = ({
             }  relative py-4 justify-center lg:p-0 w-full lg:flex flex-col lg:flex-row lg:w-[300px]`}
           >
             <div className="lg:items-center justify-center mt-4 lg:mt-0 flex flex-col lg:flex-row ">
-            {User && User.role === "ADMIN" && (
-                 <Button className="text-blue-500 hover:opacity-80"
-                 onClick={()=>{Router.push('/admin')}}
-                 >Passer en mode Admin
-                 </Button>
-              ) }
+          
               {!User ? (
                 <div className="space-x-2 flex mr-4 flex-row">
                   <Link
@@ -167,8 +168,8 @@ const AdminNav = ({
                       !istoggleParamsUser ? "isSlideSettings" : ""
                     } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2 lg:px-2 lg:w-[300px]   div-account`}
                   >
-                    <ul className="">
-                      <li className={`${settingsUser}`}>{User?.email}</li>
+                           <ul className="p-0">
+                      <li className={`${settingsUser} font-bold`}>{User?.email}</li>
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                       <Link
                         href="/Profil"
@@ -191,7 +192,7 @@ const AdminNav = ({
                            href="/admin"
                            className="cursor-pointer group/settingsAcc"
                          >
-                           <li className={`${settingsUser}`}>Ton dashboard</li>
+                           <li className={`${settingsUser}`}>Ton dashboard ADMIN</li>
                          </Link>
                       )
                       }
@@ -200,16 +201,26 @@ const AdminNav = ({
                         href="/api/auth/logout"
                         className="cursor-pointer group/settingsAcc"
                       >
-                        <li className="linksSettings">Se déconnecter</li>
+                        <li className={`${settingsUser}`}>Se déconnecter</li>
                       </Link>
                     </ul>
                   </div>
                   {/* End profile,settings,sign Out */}
                 </div>
               )}
+                  <div
+              onClick={() => {Router.push("/cart")}}
+              className="relative flex flex-col  w-fit cursor-pointer">
+                <ShoppingCart className="text-white mr-4" size={40} />
+                <span className="absolute flex justify-center items-center text-white text-sm right-1 -top-1 w-6 h-6 rounded-full bg-orange-500 ">
+                 {cartTotalQty}
+                </span>
+              </div>
             
 
             </div>
+
+
           </div>
           {/* End settingsUser */}
         </div>
@@ -230,6 +241,54 @@ const AdminNav = ({
         >
           <ul className="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6 text-white">
             {links.map((link,index)=>{
+              if(link.href === "") {
+                return (
+                  <Menu
+                  key={index}
+                  as="div"
+                  className="relative px-4 py-2 inline-block text-left lg:flex  justify-center items-center"
+                >
+                  <div>
+                    <Menu.Button className="group inline-flex justify-center text-sm font-medium text-white">
+                      Tous les Catégories
+                      <ChevronDown
+                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-white"
+                        aria-hidden="true"
+                      />
+                    </Menu.Button>
+                  </div>
+        
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-full lg:w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1">
+                        {Categories.map((option, index) => (
+                          <Menu.Item key={index}>
+                            {({ active }) => (
+                              <a
+                                href={option.href}
+                                className={`${
+                                  active ? "bg-gray-100" : ""
+                                }text-gray-500 hover:bg-orange-500 block px-4 py-2 text-sm`}
+                              >
+                                {option.content}
+                              </a>
+                            )}
+                          </Menu.Item>
+                        ))}
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+                )
+              }
                 return(
                     <Link href={link.href} key={index} className="cursor-pointer">
                 <li

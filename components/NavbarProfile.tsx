@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-
+import { MdAdminPanelSettings } from "react-icons/md";
+import { IoMdLogOut } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,7 +9,6 @@ import { Search } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import { ShoppingCart } from "lucide-react";
-
 import vStore from "../public/vStore.png";
 import { ChevronDown } from "lucide-react";
 import { Fragment } from "react";
@@ -42,25 +42,27 @@ const NavbarProfile = ({
   const toggleParamsUser = () => {
     setToggleParamsUser(!istoggleParamsUser);
   };
-  const settingsUser = "text-white lg:text-gray-200 lg:group-hover/settingsAcc:hover:bg-gray-400 ease-in duration"
+  const settingsUser = "text-white lg:px-4 px-0 py-2 lg:text-blue-700 lg:group-hover/settingsAcc:hover:bg-gray-200  ease-in duration"
   const links = [
     { href: "/", content: "Accueil" },
     { href: "", content: "Nos catégories" },
-    { href: "/bestSells", content: "Nos meilleures ventes" },
+    { href: "#", content: "Nos meilleures ventes" },
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
-    { href: "/kv surveillance", content: "kit vidéo surveillance" },
-    { href: "/mouses", content: "souris" },
-    { href: "/routeurs", content: "Routeurs" },
+    { href: "/cctv", content: "kit vidéo surveillance" },
+    { href: "/mouses", content: "Souris" },
+    { href: "#", content: "Routeurs" },
   ];
   const Categories = [
     { href: "/desktops", content: "Desktops" },
     { href: "/laptops", content: "Laptops" },
-    { href: "/kv surveillance", content: "kit vidéo surveillance" },
-    { href: "/switchs", content: "switchs" },
-    { href: "/modem", content: "modems" },
+    { href: "/mouses", content: "Souris" },
+    { href: "/cctv", content: "Kit vidéo surveillance" },
+     { href: "#", content: "Routeurs" },
+     { href: "#", content: "switchs" },
+       
   ];
-  <Menu as="div" className="relative inline-block text-left">
+  /*<Menu as="div" className="relative inline-block text-left">
     <div>
       <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-00 hover:text-gray-700">
         Sort
@@ -99,7 +101,7 @@ const NavbarProfile = ({
         </div>
       </Menu.Items>
     </Transition>
-  </Menu>;
+  </Menu>;*/
 
   const navLinks = links.map((link, index) => {
     if (link.href === "") {
@@ -168,10 +170,10 @@ const NavbarProfile = ({
     <div className="flex flex-col">
       <nav className="flex flex-col bg-blue-950 py-4">
         <div className="px-4 flex flex-col  justify-between items-center gap-x-2 lg:flex-row">
-          {/* logo,inputSearch,etc. */}
+          {/* logo,inputSearch,etc.  */}
           <div className="flex flex-col lg:flex-row w-full gap-x-4">
             <div className="flex w-full justify-center lg:justify-start lg:w-[150px] flex-initial">
-              {/* <Image src={tailwind} alt="logo tailwind" /> */}
+            
               <Image src={vStore} alt="logo V-Store" width={300} />
             </div>
             <div className="flex flex-row grow justify-center">
@@ -221,13 +223,13 @@ const NavbarProfile = ({
             }  relative py-4 justify-center lg:p-0 w-full lg:flex flex-col lg:flex-row lg:w-[300px]`}
           >
             <div className="lg:items-center justify-center mt-4 lg:mt-0 flex flex-col lg:flex-row ">
-              {User && User.role === "ADMIN" && (
+              {/* {User && User.role === "ADMIN" && (
                  <Button className="text-blue-500 hover:opacity-80"
                  onClick={()=>{Router.push('/admin')}}
                  >Passer en mode Admin
                  </Button>
               ) }
-             
+              */}
               {!User ? (
                 <div className="space-x-2 flex mr-4 flex-row">
                   <Link
@@ -281,10 +283,10 @@ const NavbarProfile = ({
                   <div
                     className={`${
                       !istoggleParamsUser ? "isSlideSettings" : ""
-                    } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2 lg:px-2 lg:w-[300px]   div-account`}
+                    } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2  lg:w-[300px] div-account`}
                   >
-                    <ul className="">
-                      <li className={`${settingsUser}`}>{User?.email}</li>
+                    <ul className="p-0">
+                      <li className={`${settingsUser} font-bold`}>{User?.email}</li>
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                       <Link
                         href="/Profil"
@@ -307,7 +309,7 @@ const NavbarProfile = ({
                            href="/admin"
                            className="cursor-pointer group/settingsAcc"
                          >
-                           <li className={`${settingsUser}`}>Ton dashboard</li>
+                           <li className={`${settingsUser}`}>Ton dashboard ADMIN</li>
                          </Link>
                       )
                       }
@@ -316,7 +318,7 @@ const NavbarProfile = ({
                         href="/api/auth/logout"
                         className="cursor-pointer group/settingsAcc"
                       >
-                        <li className="linksSettings">Se déconnecter</li>
+                        <li className={`${settingsUser}`}>Se déconnecter</li>
                       </Link>
                     </ul>
                   </div>
@@ -324,7 +326,7 @@ const NavbarProfile = ({
                 </div>
               )}
               <div
-              onClick={() => {Router.push("/Cart")}}
+              onClick={() => {Router.push("/cart")}}
               className="relative flex flex-col  w-fit cursor-pointer">
                 <ShoppingCart className="text-white mr-4" size={40} />
                 <span className="absolute flex justify-center items-center text-white text-sm right-1 -top-1 w-6 h-6 rounded-full bg-orange-500 ">

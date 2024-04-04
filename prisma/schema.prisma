@@ -66,6 +66,7 @@ model Order{
   userId String @db.ObjectId
   amount Float
   currency String
+  status String
   deliveryStatus String?
   createdDate DateTime @default(now())
   paymentIntentId String @unique

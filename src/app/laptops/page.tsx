@@ -15,18 +15,19 @@ import MenuFilter from "../../../components/mobileFiltersDialog/MenuFilter";
 import ProductCard from "../../../components/ProductCard";
 import getProducts from "../../../actions/getProducts";
 import { getCurrentUser } from "@/lib/actions";
+import NoProducts from "../../../components/NoProducts";
 const Page = async () => {  
   const productsAll = await getProducts({category:"Laptops"})
-  if(!productsAll || productsAll.length === 0 ) return null
+  if(!productsAll || productsAll.length === 0 ) return <NoProducts text="Impossible d'accéder à la page" />
  const user = await getCurrentUser()
  
   const Categories = [
     //{ name: "desktops", href: "/desktops" },
-    { name: "laptops", href: "/laptops" },
-    { name: "kit de vidéo surveillance", href: "/kit de vidéo suveillance" },
-    { name: "mouses", href: "/mouses" },
-    { name: "switchs", href: "/switchs" },
-    { name: "routeurs", href: "/routeurs" },
+    { name: "Desktops", href: "/desktops" },
+    { name: "Kit de vidéo surveillance", href: "/cctv" },
+    { name: "Souris", href: "/mouses" },
+    { name: "Switchs", href: "#" },
+    { name: "Routeurs", href: "#" },
   ];
   const sortOptions = [
     { name: "Most Popular", href: "#", current: true },

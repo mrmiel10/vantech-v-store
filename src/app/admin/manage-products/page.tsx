@@ -20,7 +20,7 @@ const page = async() => {
       <AdminNav path={"/admin/manage-products"} User = {user} />
       <main className="grow min-h-[200px] pt-8 max-w-[1150px] m-auto text-xl">
   
-<Heading title='Gérer les articles' center={true} atr="text-blue-700 mt-4" />
+
    {/* <hr className="mx-14 border-2 border-orange-500 mb-4"/> */}
  
     <ManageProductsClient products = {products} />

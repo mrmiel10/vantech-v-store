@@ -7,7 +7,7 @@ import { uploadImageType } from "@/app/admin/add-products/AddProductsForm";
 import { product } from "../../components/product";
 import { formatPrice } from "./formatPrice";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
+import { Suspense } from "react";
 type userUpdate = {   
         firstname: string;
         lastname: string;
@@ -132,9 +132,7 @@ export const getImagesLaptopsCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'ordi/'});
-    console.log(blobs)
-  
-    console.log(folders)
+console.log(blobs)
     return blobs
   } catch (error) {
     throw error
@@ -209,66 +207,125 @@ export const getProductById = async(productId:string)=>{
     return product
   } catch (error) {
     console.log(error)
-    throw error
+    return null
+    //throw error
 
   }
 } 
-export const getCurrentUser = async()=>{
-    
-  let authentificated = false
-  const { isAuthenticated, getUser } = getKindeServerSession();
+export const getCurrentUser = async()=>{ 
+  const {getUser } = getKindeServerSession();
   const user = await getUser();
-  let userInfo = null;
- // let userData = null;
   try {
-  if(!user){
-    authentificated = false
-   // redirect('/')
+  if(!user){   
     console.log(user)
     return null
   }
-  else authentificated = true
+  else 
   console.log(user)
 
-  if(user || user !== null){
+  if(user || user !== null){ 
    
-   
-      userInfo = await prisma.user.findUnique({
+      const userInfo = await prisma.user.findUnique({
         where: { kindeId: user?.id },
         include:{
           orders:true
         }
      });
      if(!userInfo ){
-      authentificated =false
-      return null
-  //   redirect('/')
- 
-      
+    
+      return null      
      } 
-     return userInfo
-    //  return {
-    //   ...userInfo,
-    //   createdAt: userInfo.createdAt.toISOString(),
-    //   updatedAt: userInfo.updatedAt.toISOString()
-    // }
+     return userInfo    
     } 
-  }catch (error) {
-      console.log(error)
-     authentificated = false    
+  }catch (error) {   
+      
      return null   
-    // redirect('/')
+  
     }
   
   }
- /*  if(userInfo && user) {
-   userData = {
-    id: userInfo?.id,
-    kindeId: user.id,
-    email: userInfo.email,
-    firstName: userInfo.firstName,
-    lastName: userInfo.lastName,
-   picture:userInfo.picture
+ export const getOrderById = async(orderId:string)=>{
+  try{
+    const order = await prisma.order.findUnique({
+      where:{
+        id:orderId,
+      },
+      include:{
+        user:true
+      }
+    })
+    if(!order) return null
+    return order
   }
-  }*/
-  
+  catch(error){
+   // throw error
+   return null
+  }
+ }
+ export const getOrders = async() =>{
+  try {
+    const orders = await prisma.order.findMany({
+        include:{
+            user:true
+        },
+        orderBy:{
+            createdDate:"desc"
+        }
+    })
+  //  if(!orders) return null
+    return orders
+} catch (error) {
+   // return null
+   throw error
+}
+ }
+ export const getOrdersByUserId = async(userId:string) => {
+  try {
+    const orders = await prisma.order.findMany({
+        include:{
+            user:true
+        },
+        orderBy:{
+            createdDate:"desc"
+        },
+        where:{
+          userId:userId
+        }
+    })
+    if(!orders) return null
+    return orders
+} catch (error) {
+    return null
+}
+
+ }
+ export const getUserById = async(userId:string) =>{
+  try {
+    const userById = await prisma.user.findUnique({
+      where:{
+       id:userId
+      },
+      include:{
+        orders:true
+      }
+     })
+     if(!userById) return null
+     return userById
+  } catch (error) {
+    return null
+  }
+ 
+ }
+ export const getUsers = async() =>{
+  try {
+    const users = await prisma.user.findMany({})
+   /// if(!users) return null
+    return users
+  } catch (error:any) {
+    //throw new Error(error)
+   // return null
+   throw  error
+  }
+ 
+
+ }

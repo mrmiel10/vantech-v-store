@@ -36,6 +36,7 @@ import {
 } from "firebase/storage";
 import firebaseApp from "@/lib/firebase";
 import toast, { Toaster } from "react-hot-toast";
+import Heading from "../../../../components/Heading";
 export type imageType = {
   color?: string;
   colorCode?: string;
@@ -257,7 +258,10 @@ const AddProductsForm = () => {
   return (
     <div className="flex justify-center items-center  w-full">
       <div className="flex flex-col px-4 py-4 w-[300px] sm:w-[600px]">
-        <Toaster />
+        <div className="flex justify-center items-center min-h-[50px]">
+        <Heading title='Ajouter un article' center={true} atr=" text-blue-700 my-4" />
+        </div>
+      
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -396,7 +400,7 @@ const AddProductsForm = () => {
                 </div>
                 <div className="text-orange-700">
                   Vous devez choisir une image pour chaque couleur de produit
-                  sélectionné
+                  sélectionnée
                 </div>
               </div>
               <input className="hidden" name="productImage" />

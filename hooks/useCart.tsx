@@ -10,7 +10,7 @@ type CartContextType = {
     handleCartQtyDecrease:(product:CartProductType) => void
     handleClearCart:() => void
     paymentIntent:string | null
-    handleSetPaymentIntent:(val:string) => void
+    handleSetPaymentIntent:(val:string | null) => void
 }
 export const CartContext = 
 createContext<CartContextType | null>(null)
@@ -27,7 +27,7 @@ export const CartContextProvider = (props:Props) =>{
         const cartItems:any = localStorage.getItem('vStoreCartItems')
         console.log(cartItems)
         const cProducts: CartProductType[] | null = JSON.parse(cartItems)
-        const eShopPaymentIntent:any = localStorage.getItem('eShopPaymentIntent')
+        const eShopPaymentIntent:any = localStorage.getItem("eShopPaymentIntent")
         const paymentIntent: string | null = JSON.parse(eShopPaymentIntent)
         setCartProducts(cProducts)
         setPaymentIntent(paymentIntent)

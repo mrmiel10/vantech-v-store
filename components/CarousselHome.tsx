@@ -62,53 +62,7 @@ const CarousselHome:React.FC<CarousselProps> = ({titleCaroussel,data}) => {
      
      
       </CarouselContent>
-     {/* <CarouselContent className="-ml-1 md:-ml-4">   
-     <CarouselItem  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
-     <div className="w-full ">
-              <Card>
-                <CardContent className="w-full p-0 grow aspect-square flex h-[300px]">
-                  <Image src={shoeBlack} alt="ff" className="w-full object-cover"/>
-
-                </CardContent>
-              </Card>
-            </div>
-
-     </CarouselItem>
-     <CarouselItem  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
-     <div className="w-full ">
-              <Card>
-                <CardContent className="w-full p-0 grow aspect-square flex h-[300px]">
-                  <Image src={shoeBlack} alt="ff" className="w-full object-cover"/>
-
-                </CardContent>
-              </Card>
-            </div>
-
-     </CarouselItem>
-     <CarouselItem  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
-     <div className="w-full ">
-              <Card>
-                <CardContent className="w-full p-0 grow aspect-square flex h-[300px]">
-                  <Image src={shoeBlack} alt="ff" className="w-full object-cover"/>
-
-                </CardContent>
-              </Card>
-            </div>
-
-     </CarouselItem>
-     <CarouselItem  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
-     <div className="w-full ">
-              <Card>
-                <CardContent className="w-full p-0 grow aspect-square flex h-[300px]">
-                  <Image src={shoeBlack} alt="ff" className="w-full object-cover"/>
-
-                </CardContent>
-              </Card>
-            </div>
-
-     </CarouselItem>
-     
-      </CarouselContent> */}
+    
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>

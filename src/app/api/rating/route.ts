@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/actions";
 import { Review } from "@prisma/client";
 import { NextResponse } from "next/server";
+
 export async function POST(request:Request){
     const currentUser = await getCurrentUser();
     if(!currentUser){
@@ -13,9 +14,9 @@ export async function POST(request:Request){
     const userReview = product?.reviews.find((review:Review)=>{
         return review.userId === currentUser.id
     })
-    if(userReview || !deliveredOrder){
+    /*if(userReview || !deliveredOrder){
         return NextResponse.error()
-    }
+    }*/
     const review = await prisma?.review.create({
         data:{
             comment,

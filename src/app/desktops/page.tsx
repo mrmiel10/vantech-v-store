@@ -18,18 +18,19 @@ import { getCurrentUser } from "@/lib/actions";
 import NoProducts from "../../../components/NoProducts";
 const Page = async () => {
   const productsAll = await getProducts({category:"Desktops"})
- if(!productsAll || productsAll.length === 0 ) return <NoProducts />
+ if(!productsAll || productsAll.length === 0 ) return <NoProducts text="Impossible d'accéder à la page" />
 const user = await getCurrentUser()
 
-
-  const Categories = [
-    //{ name: "desktops", href: "/desktops" },
-    { name: "laptops", href: "/laptops" },
-    { name: "kit de vidéo surveillance", href: "/kit de vidéo suveillance" },
-    { name: "mouses", href: "/mouses" },
-    { name: "switchs", href: "/switchs" },
-    { name: "routeurs", href: "/routeurs" },
-  ];
+const Categories = [
+  
+  { href: "/laptops", name: "Laptops" },
+  { href: "/mouses", name: "Souris" },
+  { href: "/cctv", name: "Kit vidéo surveillance" },
+   { href: "#", name: "Routeurs" },
+   { href: "#", name: "switchs" },
+     
+];
+ 
   const sortOptions = [
     { name: "Most Popular", href: "#", current: true },
     { name: "Plus d'étoiles", href: "#", current: false },

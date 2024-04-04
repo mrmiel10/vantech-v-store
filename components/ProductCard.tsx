@@ -24,10 +24,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         {" "}
         <div 
         onClick={() => Router.push(`/product/${data.id}`)}
-        className="grow py-4 overflow-hidden aspect-square hover:scale-105 transition flex  justify-center w-full h-[200px] cursor-pointer">
+        className="relative grow p-4 overflow-hidden aspect-square hover:scale-105 transition flex  justify-center w-full h-[200px] cursor-pointer">
           <Image
-            width={300}
-            height={300}
+          fill
+            // width={300}
+            // height={300}
             className="rounded-xl object-contain w-full"
             src={data.image[0].image}
             alt={""}

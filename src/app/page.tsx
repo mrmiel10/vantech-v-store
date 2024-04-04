@@ -1,5 +1,4 @@
-
-import Head from "next/head";
+export const revalidate  = 0
 import Image from "next/image";
 import NavbarProfile from "../../components/NavbarProfile";
 import prisma from "../../db";
@@ -12,7 +11,6 @@ import { SquareSlashIcon } from "lucide-react";
 import { FaXmark } from "react-icons/fa6";
 import ProductCard from "../../components/ProductCard";
 import Footer from "../../components/Footer";
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import AllProducts from "../../components/allProducts";
 import getProducts from "../../actions/getProducts";
 import FilterAllProducts from "../../components/mobileFiltersDialog/FilterAllProducts";
@@ -20,11 +18,13 @@ import ButtonOpenFilter from "../../components/mobileFiltersDialog/ButtonOpenFil
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import MenuFilter from "../../components/mobileFiltersDialog/MenuFilter";
 import { getCurrentUser } from "@/lib/actions";
+import NoProducts from "../../components/NoProducts";
+import ShuffleProducts from "../../actions/shuffleProducts";
 //import { products } from "./products";
 export default async function Home() {  
   const user = await getCurrentUser()
  const productsAll = await getProducts({category:null})
- if(!productsAll || productsAll.length === 0 ) return <p>Vous n&apos;etes pas connecté</p>
+ if(!productsAll || productsAll.length === 0 ) return <NoProducts text="Désolé, nous ne parvenons pas à accéder à la page" />
 
 
 
@@ -53,7 +53,8 @@ function classNames(...classes: any) {
         <NavbarProfile path={"/"} User = {user} />
         <main className="grow">
      <header className="px-8 min-h-28 flex justify-center items-center text-blue-700 text-xl lg:text-2xl">
-      <p className="flex flex-col f400:flex-row text-center text-2xl">Obtenez votre Toolkit à porter dun clic</p>
+      <p className="flex flex-col f400:flex-row text-center text-2xl">Obtenez votre Toolkit à porter d&apos;un clic</p>
+      <a href="/laptops">laptops</a>
     </header> 
      <hr className="mx-14 border-2 border-orange-500 mb-4"/>
     
@@ -89,8 +90,8 @@ function classNames(...classes: any) {
 
               {/* Product grid */}
               <div className="col-span-3">
-                <div className="mx-auto grid grid-cols-1 max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
-                  {productsAll.map((product,index) =>{
+                <div className="mx-auto grid grid-cols-1 justify-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-2 lg:max-5xl  xl:grid-cols-3 gap-16 min-h-[400px]">
+                  {ShuffleProducts(productsAll).map((product:any,index:any) =>{
                     return (
                       <ProductCard key={index} data={product} />
                     )

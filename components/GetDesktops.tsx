@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { getImagesDesktopsCaroussel } from '@/lib/actions';
 
-const GetDesktops = () => {
+const GetDesktops =() => {
     const [allImage, setAllImage] = useState<ListBlobResultBlob[] | null>(null)
     const [isImages,setIsImages] = useState<boolean>(false)
     useEffect(()=>{
@@ -21,7 +21,7 @@ const GetDesktops = () => {
       }
      getAllImage()
 
-    },[allImage])
+    },[])
     
       if(!isImages) {
         return null
