@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Fragment } from "react";
-import Laptops from "../../../components/Categories/Laptops";
+
 import NavbarProfile from "../../../components/NavbarProfile";
 import Footer from "../../../components/Footer";
 import CarousselHome from "../../../components/CarousselHome";
