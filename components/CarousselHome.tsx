@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import Image from "next/image";
-import shoeBlack from "../public/blackShoe.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 
 import useEmblaCarousel from 'embla-carousel-react'

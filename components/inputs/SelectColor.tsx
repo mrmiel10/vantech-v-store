@@ -1,7 +1,7 @@
 "use client"
 import { imageType } from "@/app/admin/add-products/AddProductsForm"
 import { useCallback, useEffect, useState } from "react"
-import { Checkbox } from "@/components/ui/checkbox"
+
 import SelectImage from "./SelectImage"
 import { Button } from "@/components/ui/button"
 interface SelectColorProps{
