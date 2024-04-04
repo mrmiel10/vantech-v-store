@@ -26,6 +26,8 @@ model User {
   //role Role @default(USER)
   reviews Review[]
 }
+ "eslint": "^8",
+    "eslint-config-next": "14.0.4",
 model Review{
   id Int @id @default(autoincrement())
   userId Int
