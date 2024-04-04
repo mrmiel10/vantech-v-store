@@ -1,6 +1,6 @@
 import React from 'react'
 import NavbarProfile from '../../../components/NavbarProfile'
-import ShoppingCart from '../../../components/CartShopping'
+
 import Footer from '../../../components/Footer'
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from '../../../db';
