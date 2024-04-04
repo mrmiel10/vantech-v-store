@@ -56,7 +56,7 @@ const CheckoutClient = () => {
     // else{
     //   Router.back()
     // }
-  },[cartProducts,paymentIntent])
+  },[])
   const options: StripeElementsOptions = {
     clientSecret,
     appearance:{
@@ -73,13 +73,18 @@ const CheckoutClient = () => {
 
     return (
     <div className='max-w-[500px] shadow-md p-8'>
-      {clientSecret && cartProducts && (
+      {clientSecret && cartProducts ? (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm clientSecret={clientSecret}
           handleSetPayementSuccess={handleSetPaymentSuccess}
           />
         </Elements>
-      )}
+      )
+      :(
+        <>
+        </>
+      )
+      }
       
       {loading ? (
         <div className='text-center text-blue-700'>En attente de la validation de la commande....</div>

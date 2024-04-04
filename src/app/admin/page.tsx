@@ -18,7 +18,7 @@ const Page = async({path,User}:{ path?: string;
   const users = await getUsers()
   const graphData = await getGraphData()
 const user = await getCurrentUser()
-if(!user) redirect("/api/auth/login")
+if(!user || user.role !== "ADMIN") redirect("/api/auth/login")
   
   return (
     <>

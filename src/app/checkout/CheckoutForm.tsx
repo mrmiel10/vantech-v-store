@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import Heading from "../../../components/Heading";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+
 interface CheckoutFormProps {
   clientSecret: string;
   handleSetPayementSuccess: (value: boolean) => void;
@@ -28,7 +29,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const formattedPrice = formatPrice(cartTotalAmount);
   useEffect(() => {
     if (!stripe) {
-      return;
+      return ;
     }
     if (!clientSecret) {
       return;

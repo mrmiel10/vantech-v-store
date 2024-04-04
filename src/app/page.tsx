@@ -54,6 +54,7 @@ function classNames(...classes: any) {
         <main className="grow">
      <header className="px-8 min-h-28 flex justify-center items-center text-blue-700 text-xl lg:text-2xl">
       <p className="flex flex-col f400:flex-row text-center text-2xl">Obtenez votre Toolkit à porter d&apos;un clic</p>
+      <a href="/laptops">laptops</a>
     </header> 
      <hr className="mx-14 border-2 border-orange-500 mb-4"/>
     

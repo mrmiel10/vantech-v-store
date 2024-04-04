@@ -209,7 +209,7 @@ const AdminNav = ({
                 </div>
               )}
                   <div
-              onClick={() => {Router.push("/Cart")}}
+              onClick={() => {Router.push("/cart")}}
               className="relative flex flex-col  w-fit cursor-pointer">
                 <ShoppingCart className="text-white mr-4" size={40} />
                 <span className="absolute flex justify-center items-center text-white text-sm right-1 -top-1 w-6 h-6 rounded-full bg-orange-500 ">
