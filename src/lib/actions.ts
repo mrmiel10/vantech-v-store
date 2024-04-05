@@ -58,7 +58,7 @@ export default updateUser
 export const uploadFile = async(form:FormData,folder:string) =>{
   try {
     const file = form.get("image") as File
-  console.log(file)
+  //console.log(file)
   //if(file != null){
     const filename = file.name
     const blob = await put(`${folder}/${filename}`,file, {
@@ -81,9 +81,9 @@ export const getImagesCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'all/'});
-    console.log(blobs)
+  //  console.log(blobs)
   
-    console.log(folders)
+    //console.log(folders)
     return blobs
   } catch (error) {
     throw error
@@ -98,9 +98,9 @@ export const getImagesDesktopsCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'desktops/'});
-    console.log(blobs)
+   // console.log(blobs)
   
-    console.log(folders)
+    //console.log(folders)
     return blobs
   } catch (error) {
     throw error
@@ -115,9 +115,9 @@ export const getImagesMousesCaroussel = async() =>{
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'mouses/'});
-    console.log(blobs)
+   // console.log(blobs)
   
-    console.log(folders)
+    //console.log(folders)
     return blobs
   } catch (error) {
     throw error
@@ -127,14 +127,14 @@ export const getImagesMousesCaroussel = async() =>{
 export const getImagesCctvCaroussel = async() =>{
   try {
     const {
-      folders: [mouses],
+      folders: [cctv],
       blobs: rootBlobs,
     } = await list({ mode: 'folded' });
      
     const { folders, blobs } = await list({ mode: 'folded', prefix:'cctv/'});
-    console.log(blobs)
+    //console.log(blobs)
   
-    console.log(folders)
+    //console.log(folders)
     return blobs
   } catch (error) {
     throw error
@@ -144,12 +144,12 @@ export const getImagesCctvCaroussel = async() =>{
 export const getImagesLaptopsCaroussel = async() =>{
   try {
     const {
-      folders: [ordi],
+      folders: [laptop],
       blobs: rootBlobs,
     } = await list({ mode: 'folded' });
      
-    const { folders, blobs } = await list({ mode: 'folded', prefix:'ordi/'});
-console.log(blobs)
+    const { folders, blobs } = await list({ mode: 'folded', prefix:'laptop/'});
+//console.log(blobs)
     return blobs
   } catch (error) {
     throw error
