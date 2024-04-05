@@ -10,6 +10,7 @@ import getProducts from "../../../actions/getProducts";
 import { getCurrentUser } from "@/lib/actions";
 import NoProducts from "../../../components/NoProducts";
 import ShuffleProducts from "../../../actions/shuffleProducts";
+import GetCctv from "../../../components/GetCctv";
 
 const Page = async () => {
   const productsAll = await getProducts({ category: "Videos surveillance" });
@@ -58,7 +59,7 @@ const Page = async () => {
       <NavbarProfile path="/cctv" User={user} />
       <main className="grow">
         <Header />
-        <GetMouses />
+        <GetCctv />
 
         <div>
           <div>

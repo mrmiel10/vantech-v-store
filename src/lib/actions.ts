@@ -124,6 +124,23 @@ export const getImagesMousesCaroussel = async() =>{
   }
   
 }
+export const getImagesCctvCaroussel = async() =>{
+  try {
+    const {
+      folders: [mouses],
+      blobs: rootBlobs,
+    } = await list({ mode: 'folded' });
+     
+    const { folders, blobs } = await list({ mode: 'folded', prefix:'cctv/'});
+    console.log(blobs)
+  
+    console.log(folders)
+    return blobs
+  } catch (error) {
+    throw error
+  }
+  
+}
 export const getImagesLaptopsCaroussel = async() =>{
   try {
     const {
