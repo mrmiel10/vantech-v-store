@@ -292,7 +292,7 @@ const NavbarProfile = ({
                         href="/profil"
                         
                         onClick={() => {
-                          `${window.location.origin}/Profil`;
+                          `${window.location.origin}/profil`;
                         }}
                         className="cursor-pointer group/settingsAcc"
                       >
