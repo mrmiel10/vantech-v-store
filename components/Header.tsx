@@ -5,7 +5,7 @@ const Header = () => {
     <div className='px-8'>
        <header className="px-8 min-h-28 flex flex-col justify-center items-center text-blue-700 text-xl lg:text-2xl">
           <p className="flex flex-col text-center text-2xl">
-            Obtenez votre Toolkit à porter d&apos;un clic
+            Obtenez votre Toolkit à porté d&apos;un clic
           </p>
          
         </header>

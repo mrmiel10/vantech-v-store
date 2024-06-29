@@ -51,7 +51,7 @@ const CartClient = ({  User
       </div>
     
 
-        {!!User ? (
+        {!User ? (
           <Button
            
           onClick={()=>{Router.push('/checkout')}}

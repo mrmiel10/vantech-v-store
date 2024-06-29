@@ -44,10 +44,13 @@ export default async function getProducts(params:IProductsParams){
             }
            
         })
+       
+   
         return products
     }
     catch(error:any){
-        console.log(error)
-        throw new Error(error)
+        //console.log(error)
+        return null
+       // throw new Error(error)
     }
 }

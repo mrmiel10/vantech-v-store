@@ -22,8 +22,10 @@ const page = async() => {
   
 
    {/* <hr className="mx-14 border-2 border-orange-500 mb-4"/> */}
- 
-    <ManageProductsClient products = {products} />
+ <div className='w-full'>
+ <ManageProductsClient products = {products}  />
+ </div>
+  
 
 
    

@@ -14,9 +14,9 @@ export async function POST(request:Request){
     const userReview = product?.reviews.find((review:Review)=>{
         return review.userId === currentUser.id
     })
-    /*if(userReview || !deliveredOrder){
+    if(userReview || !deliveredOrder){
         return NextResponse.error()
-    }*/
+    }
     const review = await prisma?.review.create({
         data:{
             comment,

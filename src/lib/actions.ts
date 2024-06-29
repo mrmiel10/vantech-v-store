@@ -238,9 +238,9 @@ export const getCurrentUser = async()=>{
     return null
   }
   else 
-  console.log(user)
+  //console.log(user)
 
-  if(user || user !== null){ 
+  /*if(user || user !== null)*/{ 
    
       const userInfo = await prisma.user.findUnique({
         where: { kindeId: user?.id },

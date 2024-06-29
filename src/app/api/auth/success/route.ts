@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET() {
+    const apiUrl = process.env.NODE_ENV === "production" ? "https://vantechv-store.vercel.app/auth/success" : "http://localhost:3000"
   const {getUser} = getKindeServerSession();
     const user = await getUser();
 
@@ -30,5 +31,5 @@ export async function GET() {
         });
     }
 
-  return NextResponse.redirect("http://localhost:3000");
+  return NextResponse.redirect(apiUrl);
 }

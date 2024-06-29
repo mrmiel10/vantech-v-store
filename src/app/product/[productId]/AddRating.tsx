@@ -94,7 +94,7 @@ const deliveredOrder = user?.orders.some(order => order.products.find(item => it
 const userReview = product?.reviews.find((review:Review)=>{
     return review.userId === user.id
 })
-/*if(userReview || !deliveredOrder) return null*/
+if(userReview || !deliveredOrder) return null
 
   const classLabel = `text-gray-500 absolute
   cursor-text
