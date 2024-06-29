@@ -6,7 +6,7 @@ import { formatPrice } from '@/lib/formatPrice'
 import { formatNumber } from '@/lib/formatNumber'
 interface SummaryProps{
     orders:Order[],
-    products:Product[],
+    products:Product[] | null,
     users:User[]
 }
 type SummaryDataType = {
@@ -63,7 +63,7 @@ const Summary:React.FC<SummaryProps> = ({orders,products,users}) => {
            tempData.paidOrders.digit = paidOrders.length
            tempData.unpaidOrders.digit = unpaidOrders.length
            tempData.users.digit = users.length
-           tempData.products.digit = products.length
+           tempData.products.digit = products?.length || 0
             return tempData
         })
     },[orders,products,users])
