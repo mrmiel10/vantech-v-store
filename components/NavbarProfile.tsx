@@ -289,7 +289,7 @@ const NavbarProfile = ({
                       <li className={`${settingsUser} font-bold`}>{User?.email}</li>
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                       <Link
-                        href="/profil"
+                        href="/myprofil"
                         
                         onClick={() => {
                           `${window.location.origin}/myprofil`;
