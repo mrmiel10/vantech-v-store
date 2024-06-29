@@ -10,7 +10,7 @@ const Profile = async () => {
 
   return (
     <div className='min-h-screen grid grid-rows-[auto_1fr_auto]'>
-      <NavbarProfile User = {user}  />
+      <NavbarProfilee User = {user}  />
       <main className="grow">
       <ProfileForm  User = {user}  />
       </main>
