@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/lib/formatPrice";
 import { User,Order } from "@prisma/client";
+import sCart from '../public/sCart.svg'
 
 
 const CartClient = ({  User
@@ -21,12 +22,13 @@ const CartClient = ({  User
   const { cartProducts,handleClearCart,cartTotalAmount } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
     return (
-      <div className="text-gray-500 flex flex-col space-y-2">
-        <ShoppingCartIcon size={250} className="text-blue-950" />
+      <div className="text-gray-500 flex flex-col justify-center items-center space-y-2">
+        <Image src={sCart} alt="panier dachat vide" width={500} />
+       
         <p className="text-center">Votre panier est vide</p>
         <Link
           href={"/"}
-          className="transition hover:text-blue-700 cursor-pointer justify-center inline-flex "
+          className="transition hover:text-blue-900 cursor-pointer justify-center inline-flex "
         >
           <ArrowLeft />
           <span>Poursuivre les achats</span>
@@ -35,7 +37,7 @@ const CartClient = ({  User
     );
   }
   return (
-    <div className=" max-w-[700px] w-[600px]">
+    <div className=" max-w-sm w-full lg:max-w-xl ">
          {cartProducts.map((item)=>{
             return <ItemContent key={item.id} item={item}  />
          })}

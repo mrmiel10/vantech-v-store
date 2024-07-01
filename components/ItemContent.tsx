@@ -34,31 +34,20 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           <div>
             <p>{item.name}</p>
             <p>{item.selectedImg.color}</p>
-            <p className="font-semibold">{formatPrice(item.price)}</p>
+            <p className="font-semibold text-orange-500">{formatPrice(item.price)}</p>
            
           </div>
           <div className=" flex justify-between">
             <span
             onClick={() => handleRemoveProductFromCart(item)}       
-            className="cursor-pointer font-semibold hover:underline">Retirer</span>
+            className="cursor-pointer font-semibold hover:underline hover:text-blue-900 ease duration-100 transition">Retirer</span>
             <SetQuantity 
             cartCounter={true}
             cartProduct={item}
             handleQtyIncrease={() =>{handleCartQtyIncrease(item)}}
             handleQtyDecrease={()=> {handleCartQtyDecrease(item)}}
             />
-            {/* <div className="flex space-x-4 items-center">
-              {" "}
-              <Plus
-                className=" border
-             rounded-md border-blue-700"
-              />
-              <span>1</span>
-              <Plus
-                className=" border
-             rounded-md border-blue-700"
-              />
-            </div> */}
+         
           </div>
         </div>
       </div>
@@ -66,9 +55,10 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
       <div className="py-4">
         <p className="flex justify-between items-center">
           <span >Total</span>
-          <span className="font-semibold">{formatPrice(item.price * item.quantity)}</span>
+          <span className="font-semibold text-blue-900">{formatPrice(item.price * item.quantity)}</span>
         </p>
       </div>
+    
     
     </div>
   );

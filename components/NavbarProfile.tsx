@@ -19,6 +19,11 @@ import { useRouter } from "next/navigation";
 import { useCart } from "../hooks/useCart";
 import { User,Order } from '@prisma/client'
 import { Button } from "@/components/ui/button";
+import { SquareUser } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
+import { LogOut } from 'lucide-react';
+import { CircleUserRound } from 'lucide-react';
+import { LayoutDashboard } from 'lucide-react';
 
 const NavbarProfile = ({
  path,
@@ -62,46 +67,7 @@ const NavbarProfile = ({
      { href: "#", content: "switchs" },
        
   ];
-  /*<Menu as="div" className="relative inline-block text-left">
-    <div>
-      <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-00 hover:text-gray-700">
-        Sort
-        <ChevronDown
-          className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-500 group-hover:text-gray-700"
-          aria-hidden="true"
-        />
-      </Menu.Button>
-    </div>
-
-    <Transition
-      as={Fragment}
-      enter="transition ease-out duration-100"
-      enterFrom="transform opacity-0 scale-95"
-      enterTo="transform opacity-100 scale-100"
-      leave="transition ease-in duration-75"
-      leaveFrom="transform opacity-100 scale-100"
-      leaveTo="transform opacity-0 scale-95"
-    >
-      <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-red-200 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="py-1">
-          {Categories.map((option, index) => (
-            <Menu.Item key={index}>
-              {({ active }) => (
-                <a
-                  href={option.href}
-                  className={`${
-                    active ? "bg-gray-100" : ""
-                  }text-gray-500 block px-4 py-2 text-sm`}
-                >
-                  {option.content}
-                </a>
-              )}
-            </Menu.Item>
-          ))}
-        </div>
-      </Menu.Items>
-    </Transition>
-  </Menu>;*/
+  
 
   const navLinks = links.map((link, index) => {
     if (link.href === "") {
@@ -285,40 +251,50 @@ const NavbarProfile = ({
                       !istoggleParamsUser ? "isSlideSettings" : ""
                     } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2  lg:w-[300px] div-account`}
                   >
-                    <ul className="p-0">
-                      <li className={`${settingsUser} font-bold`}>{User?.email}</li>
+                    <ul className="p-0 mb-4 lg:mb-0">
+                     
+                      <div className="lg:px-4 py-2 inline-flex items-center cursor-pointer">
+                      <CircleUserRound strokeWidth={2.25} className="mr-2 text-white lg:text-blue-700" />
+                      <li className="font-bold  text-orange-500"> {User?.firstName} {User?.lastName}</li>
+                      </div>
+                      
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                       <Link
                         href="/myprofil"
-                        
-                        onClick={() => {
-                          `${window.location.origin}/myprofil`;
-                        }}
-                        className="cursor-pointer group/settingsAcc"
+                        className="w-full lg:hover:bg-gray-300   ease-in duration lg:px-4 py-2 inline-flex items-center cursor-pointer"
+                       
+                       
                       >
-                        <li className={`${settingsUser}`}>Mon profil</li>
+                         <SquareUser strokeWidth={2.25} className="mr-2 text-white lg:text-blue-700" />
+                        <li className='text-white  lg:text-blue-700'>Mon profil</li>
                       </Link>
                       <Link
                         href="/orders"
-                        className="cursor-pointer group/settingsAcc"
+                        className="w-full lg:hover:bg-gray-300   ease-in duration lg:px-4 py-2 inline-flex items-center cursor-pointer"
                       >
-                        <li className={`${settingsUser}`}>Mes achats</li>
+                        <ShoppingBag strokeWidth={2.25}  className="mr-2 text-white lg:text-blue-700"/>
+                        <li className='text-white  lg:text-blue-700'>Mes achats</li>
                       </Link>
+                    
                       {User && User.role === "ADMIN" && (
                            <Link
                            href="/admin"
                            className="cursor-pointer group/settingsAcc"
                          >
-                           <li className={`${settingsUser}`}>Ton dashboard ADMIN</li>
+                       
+                         <LayoutDashboard strokeWidth={2.25}  className="mr-2 text-white lg:text-blue-700"/>
+                           <li className='text-white  lg:text-blue-700'>Ton dashboard ADMIN</li>
                          </Link>
                       )
+
                       }
                      
                       <Link
                         href="/api/auth/logout"
-                        className="cursor-pointer group/settingsAcc"
+                        className="w-full lg:hover:bg-gray-300  ease-in duration lg:px-4 py-2 inline-flex items-center cursor-pointer"
                       >
-                        <li className={`${settingsUser}`}>Se déconnecter</li>
+                         <LogOut strokeWidth={2.25} className="mr-2 text-white lg:text-blue-700" />
+                        <li className='text-white  lg:text-blue-700'>Se déconnecter</li>
                       </Link>
                     </ul>
                   </div>

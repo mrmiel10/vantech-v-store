@@ -36,7 +36,7 @@ interface AddRatingProps {
 }
 
 const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
-  const router = useRouter();
+  const router = useRouter(); 
 
   const [isLoading, setIsLoading] = useState(false);
  const formValidateComment = z.object({
@@ -78,9 +78,8 @@ const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
       form.reset(); 
     
   })
-  .catch((error)=>{
-  
-
+  .catch((error)=>{ 
+    
     console.log(error)
    toast.error('Une erreur a été trouvée')
   })
@@ -96,7 +95,7 @@ const userReview = product?.reviews.find((review:Review)=>{
 })
 if(userReview || !deliveredOrder) return null
 
-  const classLabel = `text-gray-500 absolute
+const classLabel = `text-gray-500 absolute
   cursor-text
   text-md
   duration-150

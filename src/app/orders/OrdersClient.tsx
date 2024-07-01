@@ -138,23 +138,23 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
 
   return (
     <div>
-      <div className="flex justify-center items-center min-h-[50px]">
-        <Heading title="MES COMMANDES" center={true} atr=" text-blue-700 mt-4" />
+       <div className="flex justify-center items-center min-h-[50px] text-blue-900 text-2xl font-bold">
+        <p> Historique de vos commandes</p>
+     
       </div>
-
-      <div style={{ height: 600, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
-      </div>
+      <div className="w-full min-h-[300px] max-w-sm md:max-w-xl lg:max-w-2xl">
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10]}
+        checkboxSelection
+      />
+    </div>
     </div>
   );
 };

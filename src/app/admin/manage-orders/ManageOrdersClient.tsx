@@ -145,11 +145,11 @@ renderCell:(params)=>{
   
     return (
       <div>
-        <div className='flex justify-center items-center min-h-[50px]'>
-        <Heading title='Gérer les commandes des clients' center={true} atr=" text-blue-700 mt-4 text-xl" />
+        <div className='flex justify-center items-center min-h-[50px] text-blue-900 text-2xl font-bold'>
+        <p> Historique des commandes des utilisateurs</p>
         </div>
      
-          <div style={{height:600,width:"100%"}}>
+          <div className="w-full min-h-[300px]  sm:w-[600px] lg:w-[900PX]">
       <DataGrid
   rows={rows}
   columns={columns}
