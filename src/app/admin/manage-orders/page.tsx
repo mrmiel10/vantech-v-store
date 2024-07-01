@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import prisma from '../../../../db';
+
 import AdminNav from '../../../../components/admin/AdminNav';
 import Heading from '../../../../components/Heading';
 import Footer from '../../../../components/Footer';
@@ -9,7 +9,7 @@ import { getOrders } from '@/lib/actions';
 import ManageOrdersClient from './ManageOrdersClient';
 import order from "../../../../public/order.jpg"
 import Image from 'next/image';
-const page = async() => {
+const Page = async() => {
   const user = await getCurrentUser()
   if(!user || user.role !== "ADMIN" ) redirect("/")
     const orders = await getOrders()
@@ -47,4 +47,4 @@ const page = async() => {
   )
 }
 
-export default page
+export default Page
