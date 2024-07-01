@@ -7,8 +7,7 @@ import { redirect, useRouter } from 'next/navigation';
 import { getCurrentUser } from '@/lib/actions';
 import { getOrders } from '@/lib/actions';
 import ManageOrdersClient from './ManageOrdersClient';
-import NoProducts from '../../../../components/NoProducts';
-import order from "../../../public/order.jpg"
+import order from "../../../../public/order.jpg"
 import Image from 'next/image';
 const page = async() => {
   const user = await getCurrentUser()
